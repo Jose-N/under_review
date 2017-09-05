@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-![Build Status](https://codeship.com/projects/05fb73f0-7484-0135-cdd9-5adc5c5e3db7/status?branch=master)
+![Build Status](https://codeship.com/projects/fd594640-7491-0135-5e9a-22a90e89452a/status?branch=master)
 ![Code Climate](https://codeclimate.com/github/Jose-N/under_review.png)
 ![Coverage Status](https://coveralls.io/repos/Jose-N/under_review/badge.png)
 
