@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Keyword, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should have_valid(:keyword).when("funny")}
+  it {should_not have_valid(:keyword).when(nil, "")}
 end
