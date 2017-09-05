@@ -22,7 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-![Build Status](https://codeship.com/projects/6aa6f860-7482-0135-cdd9-5adc5c5e3db7/status?branch=master)
+![Build Status](https://codeship.com/projects/05fb73f0-7484-0135-cdd9-5adc5c5e3db7/status?branch=master)
 ![Code Climate](https://codeclimate.com/github/Jose-N/under_review.png)
 ![Coverage Status](https://coveralls.io/repos/Jose-N/under_review/badge.png)
 
