@@ -18,7 +18,7 @@ RSpec.describe Rating, type: :model do
 
   context "#associations" do
     it { should belong_to :comment}
-    it { should belong_to :user}
+    # it { should belong_to :user}
 
   end
 end
