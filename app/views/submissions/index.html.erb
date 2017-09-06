@@ -1,5 +1,5 @@
 <ul>
   <% @submissions.each do |submission| %>
-    <li><%= submission.title %></li>
+    <li><%= link_to submission.title, submission %></li>
   <% end %>
 </ul>
