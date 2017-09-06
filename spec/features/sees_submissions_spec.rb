@@ -6,7 +6,7 @@ feature "sees submissions" do
     another_submission = FactoryGirl.create(:submission, :full)
 
     visit submissions_path
-    expect(page).to have_content(submission.title)
-    expect(page).to have_content(another_submission.title)
+    expect(page).to have_link(submission.title)
+    expect(page).to have_link(another_submission.title)
   end
 end
