@@ -8,6 +8,5 @@ feature "sees submissions" do
     visit submissions_path
     expect(page).to have_content(submission.title)
     expect(page).to have_content(another_submission.title)
-    
   end
 end
