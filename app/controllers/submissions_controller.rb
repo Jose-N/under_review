@@ -3,6 +3,10 @@ class SubmissionsController < ApplicationController
     @submissions = Submission.all
   end
 
+  def show
+    @submission = Submission.find(params[:id])
+  end
+
   def new
     @submission = Submission.new
   end
