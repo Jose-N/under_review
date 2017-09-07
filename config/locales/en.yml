@@ -30,4 +30,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      submission:
+        screenshot: "Screenshot"
+    errors:
+      models:
+        submission:
+          attributes:
+            screenshot:
+              blank: "is required"
