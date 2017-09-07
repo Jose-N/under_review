@@ -5,6 +5,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find(params[:id])
+    @comment = Comment.new 
   end
 
   def new
@@ -15,7 +16,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
     if @submission.save
       redirect_to @submission,
-      notice: "This Jawn Has Been Saved"  
+      notice: "This Jawn Has Been Saved"
     else
       render :new
     end
