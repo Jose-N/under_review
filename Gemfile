@@ -1,5 +1,7 @@
 source 'https://rubygems.org/'
 ruby "2.3.3"
+gem 'simple_form'
+gem 'devise'
 
 gem 'rails', '~> 5.1.2'
 gem 'pg', '~> 0.18'
@@ -17,6 +19,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'faker'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'launchy', require: false
