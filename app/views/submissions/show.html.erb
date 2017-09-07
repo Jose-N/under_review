@@ -10,5 +10,12 @@
 <ul>
   <% @submission.comments.each do |comment|%>
     <li><%= comment.body %></li>
+
+    <h4>Ratings</h4>
+    <ul>
+        <li> Troll Rating <%= comment.rating.troll %></li>
+        <li> Funny Rating <%= comment.rating.funny %></li>
+        <li>Story Rating <%= comment.rating.story %></li>
+        <li>Helpful Rating <%= comment.rating.helpful %></li>
   <% end %>
 </ul>
