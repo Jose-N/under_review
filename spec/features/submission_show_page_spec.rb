@@ -24,8 +24,8 @@ feature "see show page for a submission" do
 
 end
 
-feature "see show page for a submission" do
-  scenario "user can see comments on page" do
+feature "user can see comments on page" do
+  scenario "user goes to show page for a submission for comments" do
     min_submission = FactoryGirl.create(:submission)
     first_comment = FactoryGirl.create(:comment, submission_id: min_submission.id)
 
@@ -40,7 +40,7 @@ feature "user can see ratings on show page" do
     min_submission = FactoryGirl.create(:submission)
     first_comment = FactoryGirl.create(:comment, submission_id: min_submission.id)
     first_rating = FactoryGirl.create(:rating, submission_id: min_submission.id, comment_id: first_comment.id)
-    
+
 
     visit submission_path(min_submission)
     expect(page).to have_content(first_rating.troll)

@@ -12,10 +12,13 @@
     <li><%= comment.body %></li>
 
     <h4>Ratings</h4>
-    <ul>
+    <% if comment.rating %>
         <li> Troll Rating <%= comment.rating.troll %></li>
         <li> Funny Rating <%= comment.rating.funny %></li>
         <li>Story Rating <%= comment.rating.story %></li>
         <li>Helpful Rating <%= comment.rating.helpful %></li>
+    <% else %>
+        <li> No ratings available for this comment </li>
+    <% end %>
   <% end %>
 </ul>
