@@ -7,7 +7,7 @@ feature 'sign up', %(
 ) do
 
   scenario 'specifying valid and required information' do
-    visit root_path
+    visit submissions_path
     click_link 'Sign Up'
     fill_in 'First Name', with: 'Jon'
     fill_in 'Last Name', with: 'Smith'
