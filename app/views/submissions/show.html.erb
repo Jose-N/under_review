@@ -6,12 +6,39 @@
 <h4>Description</h4>
 <p><%= @submission.description %></p>
 
+<h4>Add a Comment </h4>
+  <%= form_for [@submission, @comment] do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+
+        <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :user_id, "User Id" %>
+      <%= f.text_field :user_id %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body, "Comment" %>
+      <%= f.text_field :body %>
+    </div>
+
+    <%= f.submit "Comment This Jawn" %>
+  <% end %>
+
+
 <h4>Comments</h4>
 <ul>
   <% @submission.comments.each do |comment|%>
     <li><%= comment.body %></li>
 
     <h4>Ratings</h4>
+    <ul>
     <% if comment.rating %>
         <li> Troll Rating <%= comment.rating.troll %></li>
         <li> Funny Rating <%= comment.rating.funny %></li>
@@ -20,5 +47,7 @@
     <% else %>
         <li> No ratings available for this comment </li>
     <% end %>
+  </ul>
+  </br>
   <% end %>
 </ul>
