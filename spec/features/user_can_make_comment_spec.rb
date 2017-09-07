@@ -25,6 +25,7 @@ feature "user can leave a comment" do
 
     expect(page).to have_content(min_submission.title)
     expect(page).to have_css("img[src*='test_submission_image.jpeg']")
-    expect(page).to have_content("Body can't be blank")  
+    expect(page).to have_content("Body can't be blank")
+    expect(page).to_not have_selector('li', count: 3)
   end
 end
