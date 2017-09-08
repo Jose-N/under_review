@@ -1,4 +1,22 @@
 <h1><%= @submission.title %></h1>
+<ul>
+  <% if @submission.ratings.count > 0 %>
+    <% @total_troll = 0 %>
+    <% @total_funny = 0 %>
+    <% @total_story = 0 %>
+    <% @total_helpful = 0 %>
+    <% @submission.ratings.each do |rating| %>
+      <% @total_troll = @total_troll + rating.troll %>
+      <% @total_funny = @total_funny + rating.funny %>
+      <% @total_story = @total_story + rating.story %>
+      <% @total_helpful = @total_helpful + rating.helpful %>
+    <% end %>
+    <li>Overall Troll: <%= @total_troll / @submission.ratings.count %></li>
+    <li>Overall Funny: <%= @total_funny / @submission.ratings.count%></li>
+    <li>Overall Story: <%= @total_story / @submission.ratings.count%></li>
+    <li>Overall Helpful: <%= @total_helpful / @submission.ratings.count%></li>
+  <% end %>
+</ul>
 
 <img src="<%= @submission.screenshot %>" alt="">
 <%= link_to "Original Review", @submission.url %>

@@ -54,6 +54,10 @@ feature "user can see ratings on show page" do
     first_rating = FactoryGirl.create(:rating, user: greg, submission_id: min_submission.id, comment_id: first_comment.id)
 
     visit submission_path(min_submission)
+    expect(page).to have_content("Overall Troll: 1")
+    expect(page).to have_content("Overall Funny: 3")
+    expect(page).to have_content("Overall Story: 5")
+    expect(page).to have_content("Overall Helpful: 1")
     expect(page).to have_content(first_rating.troll)
     expect(page).to have_content(first_rating.funny)
     expect(page).to have_content(first_rating.story)
