@@ -32,6 +32,7 @@
 <h4>Comments</h4>
 <ul>
   <% @submission.comments.each do |comment|%>
+  <%= " posted @ #{comment.created_at} by" %> <strong> <%= "#{comment.user.username}" %> </strong>
     <li><%= comment.body %></li>
 
     <h4>Ratings</h4>
