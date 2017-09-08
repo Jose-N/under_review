@@ -68,7 +68,7 @@
   <% @submission.ratings.each do |rating|%>
     <% if rating.comment %>
       <% if rating.comment.body != ""  %>
-        <%= " posted @ #{rating.created_at} by" %> <strong> <%= "#{rating.username}" %> </strong>
+        <%= " posted @ #{rating.created_at} by" %> <strong> <%= "#{rating.user.username}" %> </strong>
         <li><%= rating.comment.body%></li>
     <% else %>
         <li>There was no comment for this rating</li>

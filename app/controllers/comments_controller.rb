@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.submission = @submission
     @rating = Rating.new(rating_params)
+    @rating.user_id = current_user.id
     @rating.comment = @comment
     @rating.submission = @submission
     if @comment.save
