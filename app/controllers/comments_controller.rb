@@ -29,11 +29,4 @@ class CommentsController < ApplicationController
     def rating_params
       params.require(:rating).permit(:troll, :funny, :story, :helpful)
     end
-
-    def check_logged_in
-      if !user_signed_in?
-        redirect_to root_path,
-        notice: "You need to sign in to do this"
-      end
-    end
 end

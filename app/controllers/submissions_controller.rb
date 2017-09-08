@@ -30,11 +30,4 @@ class SubmissionsController < ApplicationController
     def submission_params
       params.require(:submission).permit(:title, :description, :url, :screenshot)
     end
-
-    def check_logged_in
-      if !user_signed_in?
-        redirect_to root_path,
-        notice: "You need to sign in to do this"
-      end
-    end
 end
