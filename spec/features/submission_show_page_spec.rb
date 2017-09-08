@@ -37,6 +37,7 @@ feature "user can see comments on page" do
 
     min_submission = FactoryGirl.create(:submission, user: greg)
     first_comment = FactoryGirl.create(:comment, user: steven, submission_id: min_submission.id)
+    first_rating = FactoryGirl.create(:rating, user: steven, submission_id: min_submission.id, comment_id: first_comment.id)
 
     visit submission_path(min_submission)
     expect(page).to have_content(first_comment.body)

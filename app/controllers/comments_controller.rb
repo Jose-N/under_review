@@ -7,9 +7,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.submission = @submission
+    @rating = Rating.new(rating_params)
+    @rating.user_id = current_user.id
+    @rating.comment = @comment
+    @rating.submission = @submission
     if @comment.save
+      if @rating.save
       redirect_to @submission,
       notice: "This Jawn Has Been Saved"
+      end
     else
       render :'submissions/show'
     end
@@ -20,10 +26,7 @@ class CommentsController < ApplicationController
       params.require(:comment).permit(:body)
     end
 
-    def check_logged_in
-      if !user_signed_in?
-        redirect_to root_path,
-        notice: "You need to sign in to do this"
-      end
+    def rating_params
+      params.require(:rating).permit(:troll, :funny, :story, :helpful)
     end
 end

@@ -47,4 +47,10 @@ feature "user can submit new review" do
     expect(page).to have_content "Title can't be blank"
     expect(page).to have_content "Screenshot is required"
   end
+
+  scenario "user is not logged in" do
+    visit new_submission_path
+
+    expect(page).to have_content("You need to sign in to do this")
+  end
 end

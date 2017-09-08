@@ -4,7 +4,7 @@ RSpec.describe Comment, type: :model do
 
   context "#body" do
     it { should have_valid(:body).when('Awesome Cat Review', "I didn't know bikes had two wheels")}
-    it { should_not have_valid(:body).when(nil, '')}
+    it { should have_valid(:body).when(nil, '')}
   end
 
   context "#associations" do

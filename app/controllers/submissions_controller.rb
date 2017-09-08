@@ -7,7 +7,8 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find(params[:id])
-    @comment = Comment.new
+    @comment = Comment.new 
+    @rating = Rating.new
   end
 
   def new
@@ -28,12 +29,5 @@ class SubmissionsController < ApplicationController
   private
     def submission_params
       params.require(:submission).permit(:title, :description, :url, :screenshot)
-    end
-
-    def check_logged_in
-      if !user_signed_in?
-        redirect_to root_path,
-        notice: "You need to sign in to do this"
-      end
     end
 end
