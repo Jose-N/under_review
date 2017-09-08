@@ -13,6 +13,7 @@ feature 'sign up', %(
     fill_in 'First Name', with: 'Jon'
     fill_in 'Last Name', with: 'Smith'
     fill_in 'Email', with: 'user@example.com'
+    fill_in 'Username', with: 'username'
     fill_in 'user_password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
 

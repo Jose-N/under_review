@@ -3,9 +3,12 @@ require "rails_helper"
 feature "user can submit new review" do
 
   scenario "user successfully submits a minimum review" do
+    greg = FactoryGirl.create(:user)
+
+    login_as(greg, :scope => :user)
+
     visit new_submission_path
 
-    fill_in "User Id", with: 1
     fill_in "Title", with: "This is a test title"
     attach_file :submission_screenshot, "#{Rails.root}/spec/support/images/test_submission_image.jpeg"
     click_button "Rate This Jawn"
@@ -15,9 +18,11 @@ feature "user can submit new review" do
   end
 
   scenario "user successfully submits a full review" do
-    visit new_submission_path
+    greg = FactoryGirl.create(:user)
 
-    fill_in "User Id", with: 1
+    login_as(greg, :scope => :user)
+
+    visit new_submission_path
     fill_in "Title", with: "This is a test title"
     fill_in "Description", with: "This is a test description"
     fill_in "Url", with: "www.test.com"
@@ -30,7 +35,11 @@ feature "user can submit new review" do
     expect(page).to have_css("img[src*='test_submission_image.jpeg']")
   end
 
-  scenario "user umsuccessfully submits a review" do
+  scenario "user unsuccessfully submits a review" do
+    greg = FactoryGirl.create(:user)
+
+    login_as(greg, :scope => :user)
+
     visit new_submission_path
 
     click_button "Rate This Jawn"
