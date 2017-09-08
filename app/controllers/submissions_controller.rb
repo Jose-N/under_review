@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+  before_action :check_logged_in, only: [:new, :create]
+
   def index
     @submissions = Submission.all
   end
@@ -15,6 +17,7 @@ class SubmissionsController < ApplicationController
 
   def create
     @submission = Submission.new(submission_params)
+    @submission.user_id = current_user.id
     if @submission.save
       redirect_to @submission,
       notice: "This Jawn Has Been Saved"
@@ -25,6 +28,13 @@ class SubmissionsController < ApplicationController
 
   private
     def submission_params
-      params.require(:submission).permit(:user_id, :title, :description, :url, :screenshot)
+      params.require(:submission).permit(:title, :description, :url, :screenshot)
+    end
+
+    def check_logged_in
+      if !user_signed_in?
+        redirect_to root_path,
+        notice: "You need to sign in to do this"
+      end
     end
 end

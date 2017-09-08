@@ -2,6 +2,7 @@
 
 <img src="<%= @submission.screenshot %>" alt="">
 <%= link_to "Original Review", @submission.url %>
+<%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
 
 <h4>Description</h4>
 <p><%= @submission.description %></p>
@@ -29,11 +30,6 @@
         </ul>
       </div>
     <% end %>
-
-    <div class="field">
-      <%= f.label :user_id, "User Id" %>
-      <%= f.text_field :user_id %>
-    </div>
 
     <div class="field">
       <%= f.label :body, "Comment" %>
@@ -72,6 +68,7 @@
   <% @submission.ratings.each do |rating|%>
     <% if rating.comment %>
       <% if rating.comment.body != ""  %>
+        <%= " posted @ #{rating.created_at} by" %> <strong> <%= "#{rating.username}" %> </strong>
         <li><%= rating.comment.body%></li>
     <% else %>
         <li>There was no comment for this rating</li>
