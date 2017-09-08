@@ -8,6 +8,17 @@
 
 <h4>Add a Comment </h4>
   <%= form_for [@submission, @comment] do |f| %>
+    <% if @rating.errors.any? %>
+      <div id="error_explanation">
+
+        <ul>
+        <% @rating.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <% if @comment.errors.any? %>
       <div id="error_explanation">
 
@@ -18,6 +29,7 @@
         </ul>
       </div>
     <% end %>
+
     <div class="field">
       <%= f.label :user_id, "User Id" %>
       <%= f.text_field :user_id %>
@@ -28,24 +40,51 @@
       <%= f.text_field :body %>
     </div>
 
+    <%= fields_for(@submission.ratings.build) do |u| %>
+
+      <div class="field">
+        <%= u.label :troll %>
+        <%= u.number_field :troll, in: 1...6 %>
+      </div>
+
+      <div class="field">
+        <%= u.label :funny %>
+        <%= u.number_field :funny, in: 1...6 %>
+      </div>
+
+      <div class="field">
+        <%= u.label :story %>
+        <%= u.number_field :story, in: 1...6 %>
+      </div>
+
+      <div class="field">
+        <%= u.label :helpful %>
+        <%= u.number_field :helpful, in: 1...6 %>
+      </div>
+    <% end %>
+
     <%= f.submit "Comment This Jawn" %>
   <% end %>
 
 
 <h4>Comments</h4>
 <ul>
-  <% @submission.comments.each do |comment|%>
-    <li><%= comment.body %></li>
-
-    <h4>Ratings</h4>
-    <ul>
-    <% if comment.rating %>
-        <li> Troll Rating <%= comment.rating.troll %></li>
-        <li> Funny Rating <%= comment.rating.funny %></li>
-        <li>Story Rating <%= comment.rating.story %></li>
-        <li>Helpful Rating <%= comment.rating.helpful %></li>
+  <% @submission.ratings.each do |rating|%>
+    <% if rating.comment %>
+      <% if rating.comment.body != ""  %>
+        <li><%= rating.comment.body%></li>
     <% else %>
-        <li> No ratings available for this comment </li>
+        <li>There was no comment for this rating</li>
+      <% end %>
+    <% end %>
+
+    <ul>
+
+    <% if rating.troll %>
+        <li> Troll Rating <%= rating.troll %></li>
+        <li> Funny Rating <%= rating.funny %></li>
+        <li>Story Rating <%= rating.story %></li>
+        <li>Helpful Rating <%= rating.helpful %></li>
     <% end %>
   </ul>
   </br>
