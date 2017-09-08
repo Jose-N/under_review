@@ -3,11 +3,13 @@ require 'rails_helper'
 feature "user can leave a comment" do
 
   scenario "successfully makes comment" do
-    min_submission = FactoryGirl.create(:submission)
+    greg = FactoryGirl.create(:user)
+    min_submission = FactoryGirl.create(:submission, user: greg)
+
+    login_as(greg, :scope => :user)
 
     visit submission_path(min_submission)
 
-    fill_in "User Id", with: 1
     fill_in "Comment", with: "This is so great!"
     click_button "Comment This Jawn"
 
@@ -17,7 +19,10 @@ feature "user can leave a comment" do
   end
 
   scenario "unsuccessfully makes comment" do
-    min_submission = FactoryGirl.create(:submission)
+    greg = FactoryGirl.create(:user)
+    min_submission = FactoryGirl.create(:submission, user: greg)
+
+    login_as(greg, :scope => :user)
 
     visit submission_path(min_submission)
 

@@ -1,5 +1,6 @@
 class Submission < ApplicationRecord
   mount_uploader :screenshot, ScreenshotUploader
+  belongs_to :user
   has_many :comments
   has_many :ratings
   has_many :submission_keywords
