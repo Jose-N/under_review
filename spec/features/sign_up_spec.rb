@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'sign up', %(
-  As an unathenticated user
+  As an unauthenticated user
   I want to sign up
   So that I can track my breakable toy progress
 ) do
@@ -16,6 +16,7 @@ feature 'sign up', %(
     fill_in 'Username', with: 'username'
     fill_in 'user_password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
+    attach_file :user_avatar, "#{Rails.root}/spec/support/images/test_submission_image.jpeg"
 
     click_button 'Sign Up'
 
