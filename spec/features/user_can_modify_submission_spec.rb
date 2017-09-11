@@ -8,7 +8,7 @@ feature "user can edit submission" do
 
   scenario "successfully edits submission" do
     old_title = @submission.title
-    old_description = @submission.description
+    old_description = @submission.comment[0].body
 
     login_as(@greg, :scope => :user)
 
@@ -18,13 +18,13 @@ feature "user can edit submission" do
     expect(find_field('Title').value).to eq @submission.title
 
     fill_in "Title", with: "New Title"
-    fill_in "Description", with: "New Description"
+    # fill_in "Description", with: "New Description"
     click_button "Edit This Jawn"
 
     expect(page).to have_content "New Title"
-    expect(page).to have_content "New Description"
+    # expect(page).to have_content "New Description"
     expect(page).to_not have_content old_title
-    expect(page).to_not have_content old_description
+    # expect(page).to_not have_content old_description
   end
 
   scenario "unsuccessfully edits submission" do
