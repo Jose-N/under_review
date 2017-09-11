@@ -1,5 +1,7 @@
 class SubmissionsController < ApplicationController
-  before_action :check_logged_in, only: [:new, :create]
+  before_action :check_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_admin, only: [:edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   def index
     @submissions = Submission.all
@@ -7,7 +9,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = Submission.find(params[:id])
-    @comment = Comment.new 
+    @comment = Comment.new
     @rating = Rating.new
   end
 
@@ -26,8 +28,18 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
     def submission_params
       params.require(:submission).permit(:title, :description, :url, :screenshot)
+    end
+
+    def check_user
+      if current_user.id != Submission.find(params[:id]).user.id
+        redirect_to root_path,
+        notice: "You cant do that"
+      end
     end
 end
