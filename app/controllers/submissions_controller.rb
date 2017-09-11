@@ -1,14 +1,13 @@
 class SubmissionsController < ApplicationController
   before_action :check_logged_in, only: [:new, :create, :edit, :update, :destroy]
-  before_action :check_admin, only: [:edit, :update, :destroy]
-  before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :check_authorized, only: [:edit, :update, :destroy]
 
   def index
     @submissions = Submission.all
   end
 
   def show
-    @submission = Submission.find(params[:id])
     @comment = Comment.new
     @rating = Rating.new
   end
@@ -28,18 +27,41 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def destroy
+    @submission.destroy
+    redirect_to submissions_path,
+    notice: "This Jawn is gone"
+  end
+
   def edit
   end
 
+  def update
+    if @submission.update(edit_params)
+      redirect_to @submission,
+      notice: "This Jawn Has Been Saved"
+    else
+      render :edit
+    end
+  end
+
   private
+    def set_submission
+      @submission = Submission.find(params[:id])
+    end
+
     def submission_params
       params.require(:submission).permit(:title, :description, :url, :screenshot)
     end
 
-    def check_user
-      if current_user.id != Submission.find(params[:id]).user.id
+    def edit_params
+      params.require(:submission).permit(:title, :description)
+    end
+
+    def check_authorized
+      if !current_user.admin && current_user.id != @submission.user_id
         redirect_to root_path,
-        notice: "You cant do that"
+        notice: "You are not authorized to do that"
       end
     end
 end

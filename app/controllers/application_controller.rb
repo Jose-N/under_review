@@ -22,4 +22,5 @@ class ApplicationController < ActionController::Base
       notice: "You are not authorized to do that"
     end
   end
+
 end

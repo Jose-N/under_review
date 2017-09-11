@@ -25,6 +25,13 @@
 <h4>Description</h4>
 <p><%= @submission.description %></p>
 
+<% if user_signed_in? %>
+  <% if current_user.admin || current_user.id == @submission.user_id %>
+    <%= link_to "Edit this Jawn", edit_submission_path(@submission) %>
+    <%= link_to "Delete this Jawn", submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+<% end %>
+
 <h4>Add a Comment </h4>
   <%= form_for [@submission, @comment] do |f| %>
     <% if @rating.errors.any? %>
@@ -88,6 +95,11 @@
       <% if rating.comment.body != ""  %>
         <%= " posted @ #{rating.created_at} by" %> <strong> <%= "#{rating.user.username}" %> </strong>
         <li><%= rating.comment.body%></li>
+        <% if user_signed_in? %>
+          <% if current_user.admin %>
+            <%= link_to "Delete comment", comment_path(rating.comment), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        <% end %>
     <% else %>
         <li>There was no comment for this rating</li>
       <% end %>

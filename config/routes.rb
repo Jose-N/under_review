@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :submissions, only: [:edit, :update, :destroy]
   resources :ratings, only: [:edit, :update, :destroy]
-  resources :comments, only: [:edit, :update, :destroy]
+  resources :comments, only: [:edit, :update, :destroy, :show]
 end

@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action :check_logged_in, only: [:create]
 
-
   def create
     @submission = Submission.find(params[:submission_id])
     @comment = Comment.new(comment_params)
@@ -20,6 +19,14 @@ class CommentsController < ApplicationController
     else
       render :'submissions/show'
     end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @submission = @comment.submission
+    @comment.destroy
+    redirect_to submission_path(@submission),
+    notice: 'This Jawn is gone'
   end
 
   private
