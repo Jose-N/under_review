@@ -13,8 +13,9 @@ class CommentsController < ApplicationController
     @rating.submission = @submission
     if @comment.save
       if @rating.save
-      redirect_to @submission,
-      notice: "This Jawn Has Been Saved"
+        CommentMailer.new_comment(@rating).deliver_now
+        redirect_to @submission,
+        notice: "This Jawn Has Been Saved"
       end
     else
       render :'submissions/show'

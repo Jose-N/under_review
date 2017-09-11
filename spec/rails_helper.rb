@@ -27,12 +27,18 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Capybara::DSL
 
   config.include Capybara::DSL
   
   config.after :each do
     Warden.test_reset!
   end
+
+  config.before :each do
+    ActionMailer::Base.deliveries.clear
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
