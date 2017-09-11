@@ -1,0 +1,26 @@
+<h1>Edit Submission</h1>
+
+<%= form_for @submission do |f| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+
+      <ul>
+      <% @submission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, value: @submission.title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description, value: @submission.description %>
+  </div>
+
+  <%= f.submit "Edit This Jawn" %>
+<% end %>

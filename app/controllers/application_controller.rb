@@ -15,4 +15,12 @@ class ApplicationController < ActionController::Base
       notice: "You need to sign in to do this"
     end
   end
+
+  def check_admin
+    if !current_user.admin
+      redirect_to root_path,
+      notice: "You are not authorized to do that"
+    end
+  end
+
 end

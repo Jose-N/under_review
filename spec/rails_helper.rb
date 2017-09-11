@@ -28,7 +28,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include Capybara::DSL
-
+  
   config.after :each do
     Warden.test_reset!
   end

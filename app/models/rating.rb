@@ -1,5 +1,5 @@
 class Rating < ApplicationRecord
-  belongs_to :comment
+  belongs_to :comment, dependent: :destroy
   belongs_to :submission
   belongs_to :user
 
