@@ -29,6 +29,12 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'coveralls'
   gem 'simplecov'
+  gem 'phantomjs'
+  gem 'poltergeist'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :production do
