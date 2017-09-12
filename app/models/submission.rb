@@ -12,4 +12,8 @@ class Submission < ApplicationRecord
   validates :funny, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
   validates :helpful, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
   validates :story, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
-end
+#
+#   def self.search(search)
+#     where("")
+#   end
+end 
