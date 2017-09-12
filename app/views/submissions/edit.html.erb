@@ -17,5 +17,10 @@
     <%= f.text_field :title, value: @submission.title %>
   </div>
 
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description, value: @submission.description %>
+  </div>
+
   <%= f.submit "Edit This Jawn" %>
 <% end %>

@@ -36,14 +36,14 @@ feature "user can leave a rating" do
 
     expect(page).to have_content(min_submission.title)
     expect(page).to have_css("img[src*='test_submission_image.jpeg']")
-    expect(page).to have_content("Rating troll can't be blank")
-    expect(page).to have_content("Rating troll is not a number")
-    expect(page).to have_content("Rating funny can't be blank")
-    expect(page).to have_content("Rating funny is not a number")
-    expect(page).to have_content("Rating story can't be blank")
-    expect(page).to have_content("Rating story is not a number")
-    expect(page).to have_content("Rating helpful can't be blank")
-    expect(page).to have_content("Rating helpful is not a number")
+    expect(page).to have_content("Troll can't be blank")
+    expect(page).to have_content("Troll is not a number")
+    expect(page).to have_content("Funny can't be blank")
+    expect(page).to have_content("Funny is not a number")
+    expect(page).to have_content("Story can't be blank")
+    expect(page).to have_content("Story is not a number")
+    expect(page).to have_content("Helpful can't be blank")
+    expect(page).to have_content("Helpful is not a number")
     expect(page).to_not have_selector('li', count: 3)
   end
 

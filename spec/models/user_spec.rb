@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
   end
 
   context "#associations" do
-    it { should have_many :submission }
+    it { should have_many :submissions }
     it { should have_many :comments }
   end
 end

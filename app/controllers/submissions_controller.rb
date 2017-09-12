@@ -55,7 +55,7 @@ class SubmissionsController < ApplicationController
     end
 
     def edit_params
-      params.require(:submission).permit(:title)
+      params.require(:submission).permit(:description, :title)
     end
 
     def check_authorized
