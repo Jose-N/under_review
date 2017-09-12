@@ -23,7 +23,7 @@
 <%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
 
 <h4>Description</h4>
-<p><%= @submission.comments[0].body %></p>
+<p><%= @description %></p>
 
 <% if user_signed_in? %>
   <% if current_user.admin || current_user.id == @submission.user_id %>

@@ -10,6 +10,7 @@ class SubmissionsController < ApplicationController
   def show
     @comment = Comment.new
     @rating = Rating.new
+    @description = @submission.comments[0].body
   end
 
   def new
