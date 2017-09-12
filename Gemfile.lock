@@ -97,6 +97,7 @@ GEM
     json (2.1.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    libv8 (5.9.211.38.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -110,6 +111,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_mime (0.1.4)
     mini_portile2 (2.2.0)
+    mini_racer (0.1.14)
+      libv8 (~> 5.9)
     minitest (5.10.3)
     nio4r (2.1.0)
     nokogiri (1.8.0)
@@ -270,6 +273,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  mini_racer
   pg (~> 0.18)
   phantomjs
   poltergeist
@@ -288,7 +292,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   valid_attribute
-  webpacker
+  webpacker (~> 3.0)
 
 RUBY VERSION
    ruby 2.3.3p222

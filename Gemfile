@@ -11,8 +11,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'carrierwave'
-gem 'webpacker'
 gem 'react_on_rails', '~> 9.0.1'
+gem "webpacker", "~> 3.0"
+
 
 group :development do
   gem 'listen', '~> 3.0.5'
