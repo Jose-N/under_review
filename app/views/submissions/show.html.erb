@@ -1,21 +1,9 @@
 <h1><%= @submission.title %></h1>
 <ul>
-  <% if @submission.ratings.count > 0 %>
-    <% @total_troll = 0 %>
-    <% @total_funny = 0 %>
-    <% @total_story = 0 %>
-    <% @total_helpful = 0 %>
-    <% @submission.ratings.each do |rating| %>
-      <% @total_troll = @total_troll + rating.troll %>
-      <% @total_funny = @total_funny + rating.funny %>
-      <% @total_story = @total_story + rating.story %>
-      <% @total_helpful = @total_helpful + rating.helpful %>
-    <% end %>
-    <li>Overall Troll: <%= @total_troll / @submission.ratings.count %></li>
-    <li>Overall Funny: <%= @total_funny / @submission.ratings.count%></li>
-    <li>Overall Story: <%= @total_story / @submission.ratings.count%></li>
-    <li>Overall Helpful: <%= @total_helpful / @submission.ratings.count%></li>
-  <% end %>
+    <li>Overall Troll: <%= @troll %></li>
+    <li>Overall Funny: <%= @funny%></li>
+    <li>Overall Story: <%= @story%></li>
+    <li>Overall Helpful: <%= @helpful%></li>
 </ul>
 
 <img src="<%= @submission.screenshot %>" alt="">
@@ -23,7 +11,7 @@
 <%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
 
 <h4>Description</h4>
-<p><%= @description %></p>
+<p><%= @submission.description %></p>
 
 <% if user_signed_in? %>
   <% if current_user.admin || current_user.id == @submission.user_id %>
@@ -34,16 +22,6 @@
 
 <h4>Add a Comment </h4>
   <%= form_for [@submission, @comment] do |f| %>
-    <% if @rating.errors.any? %>
-      <div id="error_explanation">
-
-        <ul>
-        <% @rating.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
 
     <% if @comment.errors.any? %>
       <div id="error_explanation">
@@ -61,28 +39,25 @@
       <%= f.text_field :body %>
     </div>
 
-    <%= fields_for(@submission.ratings.build) do |u| %>
+    <div class="field">
+      <%= f.label :troll %>
+      <%= f.number_field :troll, in: 1...6 %>
+    </div>
 
-      <div class="field">
-        <%= u.label :troll %>
-        <%= u.number_field :troll, in: 1...6 %>
-      </div>
+    <div class="field">
+      <%= f.label :funny %>
+      <%= f.number_field :funny, in: 1...6 %>
+    </div>
 
-      <div class="field">
-        <%= u.label :funny %>
-        <%= u.number_field :funny, in: 1...6 %>
-      </div>
+    <div class="field">
+      <%= f.label :story %>
+      <%= f.number_field :story, in: 1...6 %>
+    </div>
 
-      <div class="field">
-        <%= u.label :story %>
-        <%= u.number_field :story, in: 1...6 %>
-      </div>
-
-      <div class="field">
-        <%= u.label :helpful %>
-        <%= u.number_field :helpful, in: 1...6 %>
-      </div>
-    <% end %>
+    <div class="field">
+      <%= f.label :helpful %>
+      <%= f.number_field :helpful, in: 1...6 %>
+    </div>
 
     <%= f.submit "Comment This Jawn" %>
   <% end %>
@@ -90,29 +65,22 @@
 
 <h4>Comments</h4>
 <ul>
-  <% @submission.ratings.drop(1).each do |rating|%>
-    <% if rating.comment %>
-      <% if rating.comment.body != ""  %>
-        <%= " posted @ #{rating.created_at} by" %> <strong> <%= "#{rating.user.username}" %> </strong>
-        <li><%= rating.comment.body%></li>
-        <% if user_signed_in? %>
-          <% if current_user.admin %>
-            <%= link_to "Delete comment", comment_path(rating.comment), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
+  <% @submission.comments.each do |comment|%>
+    <% if comment && comment.body != "" %>
+        <%= " posted @ #{comment.created_at} by" %> <strong> <%= "#{comment.user.username}" %> </strong>
+        <li><%= comment.body%></li>
+        <% if user_signed_in? && current_user.admin %>
+            <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
         <% end %>
     <% else %>
         <li>There was no comment for this rating</li>
-      <% end %>
     <% end %>
 
     <ul>
-
-    <% if rating.troll %>
-        <li> Troll Rating <%= rating.troll %></li>
-        <li> Funny Rating <%= rating.funny %></li>
-        <li>Story Rating <%= rating.story %></li>
-        <li>Helpful Rating <%= rating.helpful %></li>
-    <% end %>
+      <li> Troll Rating <%= comment.troll %></li>
+      <li> Funny Rating <%= comment.funny %></li>
+      <li>Story Rating <%= comment.story %></li>
+      <li>Helpful Rating <%= comment.helpful %></li>
   </ul>
   </br>
   <% end %>

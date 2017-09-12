@@ -12,23 +12,16 @@
     </div>
   <% end %>
 
-  <% if @rating.errors.any? %>
-    <div id="error_explanation">
-
-      <ul>
-      <% @rating.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
 
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
 
   <div class="field">
     <%= f.label :url %>
@@ -40,36 +33,25 @@
     <%= f.file_field :screenshot, disabled: false %>
   </div>
 
-  <%= fields_for(@submission.comments.build) do |u| %>
+  <div class="field">
+    <%= f.label :troll %>
+    <%= f.number_field :troll, in: 1...6 %>
+  </div>
 
-    <div class="field">
-      <%= u.label :body, "Description" %>
-      <%= u.text_field :body %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label :funny %>
+    <%= f.number_field :funny, in: 1...6 %>
+  </div>
 
-  <%= fields_for(@submission.ratings.build) do |u| %>
+  <div class="field">
+    <%= f.label :story %>
+    <%= f.number_field :story, in: 1...6 %>
+  </div>
 
-    <div class="field">
-      <%= u.label :troll %>
-      <%= u.number_field :troll, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= u.label :funny %>
-      <%= u.number_field :funny, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= u.label :story %>
-      <%= u.number_field :story, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= u.label :helpful %>
-      <%= u.number_field :helpful, in: 1...6 %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label :helpful %>
+    <%= f.number_field :helpful, in: 1...6 %>
+  </div>
 
   <%= f.submit "Rate This Jawn" %>
 <% end %>

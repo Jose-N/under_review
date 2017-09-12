@@ -5,8 +5,6 @@ RSpec.describe CommentMailer, type: :mailer do
 
     greg = FactoryGirl.create(:user)
     submission = FactoryGirl.create(:submission, user: greg)
-    comment = FactoryGirl.create(:comment, :min, submission: submission, user: greg)
-    rating = FactoryGirl.create(:rating, user: greg, submission: submission, comment: comment)
 
     login_as(greg, :scope => :user)
 

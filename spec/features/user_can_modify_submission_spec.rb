@@ -4,13 +4,11 @@ feature "user can edit submission" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @submission = FactoryGirl.create(:submission, :full, user: @greg)
-    @comment = FactoryGirl.create(:comment, :min, submission: @submission, user: @greg)
-    @rating = FactoryGirl.create(:rating, user: @greg, submission: @submission, comment: @comment)
   end
 
   scenario "successfully edits submission" do
     old_title = @submission.title
-    old_description = @submission.comments[0].body
+    old_description = @submission.description
 
     login_as(@greg, :scope => :user)
 
@@ -20,13 +18,13 @@ feature "user can edit submission" do
     expect(find_field('Title').value).to eq @submission.title
 
     fill_in "Title", with: "New Title"
-    # fill_in "Description", with: "New Description"
+    fill_in "Description", with: "New Description"
     click_button "Edit This Jawn"
 
     expect(page).to have_content "New Title"
-    # expect(page).to have_content "New Description"
+    expect(page).to have_content "New Description"
     expect(page).to_not have_content old_title
-    # expect(page).to_not have_content old_description
+    expect(page).to_not have_content old_description
   end
 
   scenario "unsuccessfully edits submission" do
@@ -91,8 +89,6 @@ feature "user can delete submission" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @submission = FactoryGirl.create(:submission, :full, user: @greg)
-    @comment = FactoryGirl.create(:comment, :min, submission: @submission, user: @greg)
-    @rating = FactoryGirl.create(:rating, user: @greg, submission: @submission, comment: @comment)
   end
 
   scenario "successfully deletes submission" do
