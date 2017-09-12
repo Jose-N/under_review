@@ -6,11 +6,13 @@ feature "admin can delete comment" do
     @admin = FactoryGirl.create(:user, :admin)
     @submission = FactoryGirl.create(:submission, :full, user: @greg)
     @comment_one = FactoryGirl.create(:comment, user: @greg, submission: @submission)
-    @rating = FactoryGirl.create(:rating, comment: @comment_one, user: @greg, submission: @submission)
+    @rating_one = FactoryGirl.create(:rating, comment: @comment_one, user: @greg, submission: @submission)
+    @comment_two = FactoryGirl.create(:comment, :test, user: @greg, submission: @submission)
+    @rating_two = FactoryGirl.create(:rating, comment: @comment_two, user: @greg, submission: @submission)
   end
 
   scenario "successfully deletes comment" do
-    old_comment = @comment_one.body
+    old_comment = @comment_two.body
 
     login_as(@admin)
 
@@ -20,7 +22,7 @@ feature "admin can delete comment" do
     click_link "Delete comment"
 
     expect(page).to have_content "This Jawn is gone"
-    expect(page).to_not have_content old_comment
+    expect(page).to_not have_content "This is a test"
 
   end
 
