@@ -4,11 +4,15 @@ feature "see show page for a submission" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @min_submission = FactoryGirl.create(:submission, user: @greg)
+    @comment = FactoryGirl.create(:comment, :min, submission: @min_submission, user: @greg)
+    @rating = FactoryGirl.create(:rating, user: @greg, submission: @min_submission, comment: @comment)
   end
 
   scenario "user visit minimum submission" do
 
     visit submission_path(@min_submission)
+
+    login_as(@greg, :scope => :user)
 
     expect(page).to have_content(@min_submission.title)
     expect(page).to have_content(@greg.username)
@@ -17,11 +21,14 @@ feature "see show page for a submission" do
 
   scenario "user visit full submission" do
     full_submission = FactoryGirl.create(:submission, :full, user: @greg)
+    comment = FactoryGirl.create(:comment, submission: full_submission, user: @greg)
 
     visit submission_path(full_submission)
 
+    login_as(@greg, :scope => :user)
+
     expect(page).to have_content(full_submission.title)
-    expect(page).to have_content(full_submission.description)
+    expect(page).to have_content(full_submission.comments[0].body)
     expect(page).to have_content(@greg.username)
     expect(page).to have_link("Original Review", href: full_submission.url)
     expect(page).to have_css("img[src*='test_submission_image.jpeg']")
@@ -33,15 +40,19 @@ feature "user can see comments on page" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @min_submission = FactoryGirl.create(:submission, user: @greg)
+    @comment = FactoryGirl.create(:comment, :min, submission: @min_submission, user: @greg)
+    @rating = FactoryGirl.create(:rating, user: @greg, submission: @min_submission, comment: @comment)
   end
 
   scenario "user goes to show page for a submission for comments" do
     steven = FactoryGirl.create(:user)
 
-    first_comment = FactoryGirl.create(:comment, user: steven, submission_id: @min_submission.id)
-    first_rating = FactoryGirl.create(:rating, user: steven, submission_id: @min_submission.id, comment_id: first_comment.id)
+    first_comment = FactoryGirl.create(:comment, submission: @min_submission, user: steven)
+    first_rating = FactoryGirl.create(:rating, user: steven, submission: @min_submission, comment: first_comment)
 
+    login_as(steven, :scope => :user)
     visit submission_path(@min_submission)
+
     expect(page).to have_content(first_comment.body)
     expect(page).to have_content(steven.username)
   end
@@ -52,6 +63,7 @@ feature "user can see ratings on show page" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @min_submission = FactoryGirl.create(:submission, user: @greg)
+    @comment = FactoryGirl.create(:comment, :min, submission: @min_submission, user: @greg)
   end
 
   scenario "user goes to show page for a submission" do
@@ -75,6 +87,7 @@ feature "user sees edit submisison link" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @min_submission = FactoryGirl.create(:submission, user: @greg)
+    @comment = FactoryGirl.create(:comment, :min, submission: @min_submission, user: @greg)
   end
 
   scenario "user sees link if owner" do

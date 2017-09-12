@@ -5,7 +5,6 @@ FactoryGirl.define do
   end
 
   trait :full do
-    description "This is a test description"
     url "www.test.com"
   end
 

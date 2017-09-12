@@ -23,7 +23,7 @@
 <%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
 
 <h4>Description</h4>
-<p><%= @submission.description %></p>
+<p><%= @submission.comments[0].body %></p>
 
 <% if user_signed_in? %>
   <% if current_user.admin || current_user.id == @submission.user_id %>
@@ -90,7 +90,7 @@
 
 <h4>Comments</h4>
 <ul>
-  <% @submission.ratings.each do |rating|%>
+  <% @submission.ratings.drop(1).each do |rating|%>
     <% if rating.comment %>
       <% if rating.comment.body != ""  %>
         <%= " posted @ #{rating.created_at} by" %> <strong> <%= "#{rating.user.username}" %> </strong>

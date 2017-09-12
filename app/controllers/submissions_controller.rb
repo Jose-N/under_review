@@ -14,12 +14,21 @@ class SubmissionsController < ApplicationController
 
   def new
     @submission = Submission.new
+    @rating =Rating.new
+    @comment = Comment.new
   end
 
   def create
     @submission = Submission.new(submission_params)
     @submission.user_id = current_user.id
-    if @submission.save
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.submission = @submission
+    @rating = Rating.new(rating_params)
+    @rating.user_id = current_user.id
+    @rating.submission = @submission
+    @rating.comment = @comment
+    if  @submission.save && @rating.save && @comment.save
       redirect_to @submission,
       notice: "This Jawn Has Been Saved"
     else
@@ -51,11 +60,19 @@ class SubmissionsController < ApplicationController
     end
 
     def submission_params
-      params.require(:submission).permit(:title, :description, :url, :screenshot)
+      params.require(:submission).permit(:title, :url, :screenshot)
+    end
+
+    def rating_params
+      params.require(:rating).permit(:troll, :funny, :story, :helpful)
+    end
+
+    def comment_params
+      params.require(:comment).permit(:body)
     end
 
     def edit_params
-      params.require(:submission).permit(:title, :description)
+      params.require(:submission).permit(:title)
     end
 
     def check_authorized
