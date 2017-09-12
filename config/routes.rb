@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'statics#static'
+  root 'submissions#index'
 
   devise_for :users
 

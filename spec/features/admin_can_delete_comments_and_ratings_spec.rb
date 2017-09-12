@@ -6,7 +6,6 @@ feature "admin can delete comment" do
     @admin = FactoryGirl.create(:user, :admin)
     @submission = FactoryGirl.create(:submission, :full, user: @greg)
     @comment_one = FactoryGirl.create(:comment, user: @greg, submission: @submission)
-    @rating_one = FactoryGirl.create(:rating, comment: @comment_one, user: @greg, submission: @submission)
   end
 
   scenario "successfully deletes comment" do

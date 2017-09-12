@@ -1,10 +1,10 @@
 class CommentMailer < ApplicationMailer
-  def new_comment(rating)
-    @rating = rating
+  def new_comment(comment)
+    @comment = comment
 
     mail(
-      to: rating.user.email,
-      subject: "New Review for #{rating.submission.title}"
+      to: comment.user.email,
+      subject: "New Review for #{comment.submission.title}"
     )
   end
 end
