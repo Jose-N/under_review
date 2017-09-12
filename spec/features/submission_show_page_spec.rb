@@ -5,6 +5,7 @@ feature "see show page for a submission" do
     @greg = FactoryGirl.create(:user)
     @min_submission = FactoryGirl.create(:submission, user: @greg)
     @comment = FactoryGirl.create(:comment, :min, submission: @min_submission, user: @greg)
+    @rating = FactoryGirl.create(:rating, user: @greg, submission: @min_submission, comment: @comment)
   end
 
   scenario "user visit minimum submission" do
@@ -40,15 +41,16 @@ feature "user can see comments on page" do
     @greg = FactoryGirl.create(:user)
     @min_submission = FactoryGirl.create(:submission, user: @greg)
     @comment = FactoryGirl.create(:comment, :min, submission: @min_submission, user: @greg)
+    @rating = FactoryGirl.create(:rating, user: @greg, submission: @min_submission, comment: @comment)
   end
 
   scenario "user goes to show page for a submission for comments" do
     steven = FactoryGirl.create(:user)
 
-    first_comment = FactoryGirl.create(:comment, submission: @min_submission, user: @greg)
-    first_rating = FactoryGirl.create(:rating, user: @greg, submission: @min_submission, comment: first_comment)
+    first_comment = FactoryGirl.create(:comment, submission: @min_submission, user: steven)
+    first_rating = FactoryGirl.create(:rating, user: steven, submission: @min_submission, comment: first_comment)
 
-    login_as(@greg, :scope => :user)
+    login_as(steven, :scope => :user)
     visit submission_path(@min_submission)
 
     expect(page).to have_content(first_comment.body)

@@ -4,11 +4,13 @@ feature "user can edit submission" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @submission = FactoryGirl.create(:submission, :full, user: @greg)
+    @comment = FactoryGirl.create(:comment, :min, submission: @submission, user: @greg)
+    @rating = FactoryGirl.create(:rating, user: @greg, submission: @submission, comment: @comment)
   end
 
   scenario "successfully edits submission" do
     old_title = @submission.title
-    old_description = @submission.comment[0].body
+    old_description = @submission.comments[0].body
 
     login_as(@greg, :scope => :user)
 
@@ -89,6 +91,8 @@ feature "user can delete submission" do
   before(:each) do
     @greg = FactoryGirl.create(:user)
     @submission = FactoryGirl.create(:submission, :full, user: @greg)
+    @comment = FactoryGirl.create(:comment, :min, submission: @submission, user: @greg)
+    @rating = FactoryGirl.create(:rating, user: @greg, submission: @submission, comment: @comment)
   end
 
   scenario "successfully deletes submission" do

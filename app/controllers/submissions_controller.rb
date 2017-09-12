@@ -28,7 +28,7 @@ class SubmissionsController < ApplicationController
     @rating.user_id = current_user.id
     @rating.submission = @submission
     @rating.comment = @comment
-    if @rating.save && @submission.save && @comment.save
+    if  @submission.save && @rating.save && @comment.save
       redirect_to @submission,
       notice: "This Jawn Has Been Saved"
     else

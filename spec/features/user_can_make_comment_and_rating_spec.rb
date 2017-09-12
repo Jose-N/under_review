@@ -4,6 +4,8 @@ feature "user can leave a rating" do
   scenario "successfully leaves a rating" do
     greg = FactoryGirl.create(:user)
     min_submission = FactoryGirl.create(:submission, user: greg)
+    comment = FactoryGirl.create(:comment, :min, submission: min_submission, user: greg)
+    rating = FactoryGirl.create(:rating, user: greg, submission: min_submission, comment: comment)
 
     login_as(greg, :scope => :user)
 
@@ -27,6 +29,8 @@ feature "user can leave a rating" do
   scenario "unsuccessfully leaves a rating" do
     greg = FactoryGirl.create(:user)
     min_submission = FactoryGirl.create(:submission, user: greg)
+    comment = FactoryGirl.create(:comment, :min, submission: min_submission, user: greg)
+    rating = FactoryGirl.create(:rating, user: greg, submission: min_submission, comment: comment)
 
     login_as(greg, :scope => :user)
 
@@ -50,6 +54,8 @@ feature "user can leave a rating" do
   scenario "user is not logged in" do
     greg = FactoryGirl.create(:user)
     min_submission = FactoryGirl.create(:submission, user: greg)
+    comment = FactoryGirl.create(:comment, :min, submission: min_submission, user: greg)
+    rating = FactoryGirl.create(:rating, user: greg, submission: min_submission, comment: comment)
 
     visit submission_path(min_submission)
 
@@ -68,6 +74,8 @@ feature "user can leave a comment" do
   scenario "successfully makes comment" do
     greg = FactoryGirl.create(:user)
     min_submission = FactoryGirl.create(:submission, user: greg)
+    comment = FactoryGirl.create(:comment, :min, submission: min_submission, user: greg)
+    rating = FactoryGirl.create(:rating, user: greg, submission: min_submission, comment: comment)
 
     login_as(greg, :scope => :user)
 
