@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
   root 'submissions#index'
 
   devise_for :users
-  get '/submissions', to:'static_pages#index'
 
   namespace :api do
     namespace :v1 do
@@ -11,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :submissions, only: [:create, :new, :edit, :update, :destroy, :show] do
+  resources :submissions, only: [:index, :create, :new, :edit, :update, :destroy, :show] do
     resources :comments, only: [:create]
   end
 
