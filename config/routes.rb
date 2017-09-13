@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:edit, :update, :destroy, :show]
+
+  resources :searches, only: [:index]
+
+  get '/searches/results', to:'searches#result'
 end
