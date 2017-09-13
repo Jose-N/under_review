@@ -1,17 +1,4 @@
-<h1><%= @submission.title %></h1>
-<ul>
-    <li>Overall Troll: <%= @troll %></li>
-    <li>Overall Funny: <%= @funny%></li>
-    <li>Overall Story: <%= @story%></li>
-    <li>Overall Helpful: <%= @helpful%></li>
-</ul>
 
-<img src="<%= @submission.screenshot %>" alt="">
-<%= link_to "Original Review", @submission.url %>
-<%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
-
-<h4>Description</h4>
-<p><%= @submission.description %></p>
 
 <% if user_signed_in? %>
   <% if current_user.admin || current_user.id == @submission.user_id %>
@@ -85,4 +72,4 @@
   </br>
   <% end %>
 </ul>
-<%= react_component("ShowPage", props: { current_user: current_user, submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}, comments: {body: @submission.comments, user: @submission.comments.collect {|a| a.user}}}, prerender: true) %>
+<%= react_component("ShowPage", props: { allowed: user_signed_in? && current_user.admin || current_user.id == @submission.user_id, submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}, comments: {body: @submission.comments, user: @submission.comments.collect {|a| a.user}}}, prerender: true) %>
