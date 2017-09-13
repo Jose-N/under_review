@@ -9,4 +9,8 @@ Rails.application.routes.draw do
 
   resources :submissions, only: [:edit, :update, :destroy]
   resources :comments, only: [:edit, :update, :destroy, :show]
+
+  resources :searches, only: [:index]
+
+  get '/searches/results', to:'searches#result'
 end
