@@ -13,6 +13,7 @@ class ShowPage extends Component {
       </ul>
 
       <img src={`${this.props.submission.screenshot.url}`} />
+      <p>posted @ {this.props.submission.created_at} by {this.props.submission_creator}</p>
     </div>
   )
   }
