@@ -13,3 +13,142 @@
  *= require_tree .
  *= require_self
  */
+
+ /* reset */
+$crazy_grape: #360C30;
+$mid_blue: #283A5C;
+$lite_blue: #416296;
+$amazon_yellow: #E3A010;
+$strawberry_pank: #ED98D2;
+$supa_green: #011C01;
+$crystal: #046204;
+$mroon: #26111A;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+label {
+  cursor: pointer;
+}
+label:focus {
+  outline: none;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background: linear-gradient(-90deg, #011901, #012A01); */
+  background: linear-gradient(-90deg, #999, #536D70);
+  width: 150px;
+  height: 100%;
+  transform: translate3d(-150px, 0, 0);
+  transition: transform 0.35s;
+}
+.menu.two {
+  background: linear-gradient(-90deg, #a13440, #cc7317);
+}
+.menu.three {
+  background: #ED98D2;
+}
+.menu.four {
+  background: #ED98D2;
+}
+.menu label.menu-toggle {
+  position: absolute;
+  right: -60px;
+  width: 60px;
+  height: 60px;
+  line-height: 0px;
+  display: block;
+  padding: 0;
+  text-indent: -9999px;
+  background: #E3A010 url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png) 50% 50%/25px 25px no-repeat;
+}
+.menu ul {
+  list-style: none;
+}
+.menu ul li > label {
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png) 95% 50%/16px 16px no-repeat;
+}
+.menu ul li a, .menu ul li label {
+  display: block;
+  text-align: center;
+  padding: 0 20px;
+  line-height: 60px;
+  text-decoration: none;
+  color: #fff;
+}
+.menu.three ul li a, .menu.three ul li label {
+  color: #000;
+}
+.menu ul li a:hover, .menu ul li label:hover {
+  color: #665;
+}
+
+/* hide inputs */
+.menu-checkbox {
+  display: none;
+}
+
+/* hide navigation icon for sublabels */
+.menu .menu label.menu-toggle {
+  background: none;
+}
+
+/* fade in checked menu */
+.menu-checkbox:checked + .menu {
+  transform: translate3d(0, 0, 0);
+}
+
+/* for show */
+html, body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(#416296 5%, #283A5C 10%, #360C30 70%);
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+#info {
+  display: table;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+}
+#info #info-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 12px;
+}
+#info #info-content h1 {
+  color: #fff;
+  border: 3px solid #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 22px;
+  font-weight: normal;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+}
+#info #info-content h1 strong {
+  display: block;
+  font-size: 26px;
+}
