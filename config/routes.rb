@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
   root 'submissions#index'
 
   devise_for :users
