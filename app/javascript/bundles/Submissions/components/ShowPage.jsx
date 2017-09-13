@@ -4,16 +4,18 @@ class ShowPage extends Component {
   render() {
   return (
     <div className="ShowPage">
-      <p> posted @ {this.props.comments.body[0].created_at} at {this.props.comments.user[0].username}</p>
-      <p>{this.props.comments.body[0].body}</p>
+      <h1>{this.props.submission.title}</h1>
       <ul>
-      <li>Troll: {this.props.comments.body[0].troll}</li>
-      <li>Funny: {this.props.comments.body[0].funny}</li>
-      <li>Story: {this.props.comments.body[0].story}</li>
-      <li>Helpful: {this.props.comments.body[0].helpful}</li>
+        <li>Overall Troll: {this.props.submission_rating.troll}</li>
+        <li>Overall Funny: {this.props.submission_rating.funny}</li>
+        <li>Overall Story: {this.props.submission_rating.story}</li>
+        <li>Overall Helpful: {this.props.submission_rating.helpful}</li>
       </ul>
+
+      <img src={`${this.props.submission.screenshot.url}`} />
     </div>
   )
   }
 }
+
 export default ShowPage;

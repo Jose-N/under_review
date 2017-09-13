@@ -85,4 +85,4 @@
   </br>
   <% end %>
 </ul>
-<%= react_component("ShowPage", props: { current_user: current_user, submission: @submission, comments: {body: @submission.comments, user: @submission.comments.collect {|a| a.user}}}, prerender: true) %>
+<%= react_component("ShowPage", props: { current_user: current_user, submission: @submission, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}, comments: {body: @submission.comments, user: @submission.comments.collect {|a| a.user}}}, prerender: true) %>
