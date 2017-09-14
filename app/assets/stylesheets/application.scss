@@ -293,6 +293,7 @@ input[type=submit]:hover {
   opacity: 0.8;
 }
 .form-box{
+  width: 80%;
   max-width: 450px;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   margin: auto;}
@@ -356,7 +357,7 @@ input[type=submit]:hover {
     border: 1px solid #FFC2DC;
     outline: none;
     color: #F072A9;
-    padding: 5px 8px 5px 8px;
+    padding: 5px 8px 8px 8px;
     box-shadow: inset 1px 1px 4px #FFD5E7;
     -moz-box-shadow: inset 1px 1px 4px #FFD5E7;
     -webkit-box-shadow: inset 1px 1px 4px #FFD5E7;

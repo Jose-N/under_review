@@ -2,7 +2,7 @@
   <%= form_tag searches_results_path, method: 'get', style: 'text-align:right' do %>
   <p>
     <%= text_field_tag :search, params[:search], id:"search", class:"sherlock", placeholder: "What's your Jawn?" %>
-    <%= submit_tag "Rechercher", id: "search_submit", class:"watson", type: "submit" %>
+    <%= submit_tag "Rechercher", id: "search", class:"watson", type: "submit" %>
   </p>
   <% end %>
 </div>
