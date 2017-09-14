@@ -9,7 +9,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "heroku-postbuild": "NODE_ENV=production npm run webpack -- -p",
+    "postinstall": "cd client && npm install",
     "test": "node_modules/.bin/karma start karma.conf.js",
     "start": "./bin/webpack-dev-server",
     "webpack": "node_modules/.bin/webpack --config ./react/webpack.config.js"
