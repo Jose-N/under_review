@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   trait :full do
-    description "test description"
+    description "I am a potato"
     url "www.test.com"
     troll 1
     funny 1

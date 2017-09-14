@@ -1,24 +1,4 @@
-<h1><%= @submission.title %></h1>
-<ul>
-    <li>Overall Troll: <%= @troll %></li>
-    <li>Overall Funny: <%= @funny%></li>
-    <li>Overall Story: <%= @story%></li>
-    <li>Overall Helpful: <%= @helpful%></li>
-</ul>
-
-<img src="<%= @submission.screenshot %>" alt="">
-<%= link_to "Original Review", @submission.url %>
-<%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
-
-<h4>Description</h4>
-<p><%= @submission.description %></p>
-
-<% if user_signed_in? %>
-  <% if current_user.admin || current_user.id == @submission.user_id %>
-    <%= link_to "Edit this Jawn", edit_submission_path(@submission) %>
-    <%= link_to "Delete this Jawn", submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
-<% end %>
+<%= react_component("ShowPage", props: { allowed: user_signed_in? && (current_user.admin || current_user.id == @submission.user_id), submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}}, prerender: true) %>
 
 <h4>Add a Comment </h4>
   <%= form_for [@submission, @comment] do |f| %>
@@ -62,26 +42,4 @@
     <%= f.submit "Comment This Jawn" %>
   <% end %>
 
-
-<h4>Comments</h4>
-<ul>
-  <% @submission.comments.each do |comment|%>
-    <% if comment && comment.body != "" %>
-        <%= " posted @ #{comment.created_at} by" %> <strong> <%= "#{comment.user.username}" %> </strong>
-        <li><%= comment.body%></li>
-        <% if user_signed_in? && current_user.admin %>
-            <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
-    <% else %>
-        <li>There was no comment for this rating</li>
-    <% end %>
-
-    <ul>
-      <li> Troll Rating <%= comment.troll %></li>
-      <li> Funny Rating <%= comment.funny %></li>
-      <li>Story Rating <%= comment.story %></li>
-      <li>Helpful Rating <%= comment.helpful %></li>
-  </ul>
-  </br>
-  <% end %>
-</ul>
+<%= react_component("SubmissionComments", props: @comments, prerender: true) %>
