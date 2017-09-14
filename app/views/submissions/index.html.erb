@@ -1,6 +1,1 @@
-<%= link_to "Add a new submission", new_submission_path %>
-<ul>
-  <% @submissions.each do |submission| %>
-    <li><%= link_to submission.title, submission %></li>
-  <% end %>
-</ul>
+<%= react_component("IndexPage", props: { submissions: @submissions}, prerender: true) %>

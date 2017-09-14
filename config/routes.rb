@@ -3,11 +3,16 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :submissions, only: [:index, :show, :new, :create] do
+  namespace :api do
+    namespace :v1 do
+      resources :submissions, only: [:index]
+    end
+  end
+
+  resources :submissions, only: [:index, :create, :new, :edit, :update, :destroy, :show] do
     resources :comments, only: [:create]
   end
 
-  resources :submissions, only: [:edit, :update, :destroy]
   resources :comments, only: [:edit, :update, :destroy, :show]
 
   resources :searches, only: [:index]
