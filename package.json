@@ -2,7 +2,7 @@
   "name": "under_review",
   "engines": {
     "node": ">=4.0.0",
-    "yarn" : "^1.0.2"
+    "yarn" : ">0.25"
   },
   "private": true,
   "version": "1.0.0",
