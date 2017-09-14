@@ -1,6 +1,9 @@
 {
   "name": "under_review",
-  "engines" : { "node" : ">=4.0.0"},
+  "engines": {
+    "node": ">=4.0.0",
+    "yarn" : "^1.0.2"
+  },
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -14,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "yarn" : "^1.0.2",
+    "yarn": "^1.0.2",
     "enzyme": "^2.9.1",
     "isparta-loader": "2.0.0",
     "jasmine-ajax": "3.2.0",
