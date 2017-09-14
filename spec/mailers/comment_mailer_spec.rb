@@ -16,7 +16,7 @@ RSpec.describe CommentMailer, type: :mailer do
     fill_in "Helpful", with: "1"
     click_button "Comment This Jawn"
 
-    expect(page).to have_content("Overall Troll: 1")
+    expect(page).to have_content("Troll: 1")
     expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 end

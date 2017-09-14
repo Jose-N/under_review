@@ -18,9 +18,7 @@
         <label class="menu-toggle" for="menu"><span>Toggle</span></label>
         <ul>
           <li><%= link_to "Jawns", root_path %></li>
-          <li>
-            <a href="#">Menu-2</a>
-          </li>
+          <li><%= link_to "New Jawn", new_submission_path %></li>
           <li>
             <label for="menu-3">Menu-3</label>
             <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
@@ -79,22 +77,22 @@
             </div>
           </li>
           <li>
-            <label for="menu-4">Menu-4</label>
+            <label for="menu-4">Categories</label>
             <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
-            <div class="menu">
+            <div class="menu two">
               <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
               <ul>
                 <li>
-                  <a href="#">Menu-4-1</a>
+                  <a href="#">Helpful</a>
                 </li>
                 <li>
-                  <a href="#">Menu-4-2</a>
+                  <a href="#">Funny</a>
                 </li>
                 <li>
-                  <a href="#">Menu-4-3</a>
+                  <a href="#">Story</a>
                 </li>
                 <li>
-                  <a href="#">Menu-4-4</a>
+                  <a href="#">Troll</a>
                 </li>
               </ul>
             </div>
@@ -114,9 +112,7 @@
               </ul>
             </div>
           </li>
-          <li>
-            <a href="#">Menu-6</a>
-          </li>
+          <li><%= link_to "Search", searches_path %></li>
         </ul>
       </div>
     </div>

@@ -1,7 +1,8 @@
-
-<%= form_tag searches_results_path, :method => 'get' do %>
-<p>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "search", :name => nil %>
-</p>
-<% end %>
+<div id="detective">
+  <%= form_tag searches_results_path, method: 'get', style: 'text-align:right' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], id:"search", class:"sherlock", placeholder: "What's your Jawn?" %>
+    <%= submit_tag "Rechercher", id: "search_submit", class:"watson", type: "submit" %>
+  </p>
+  <% end %>
+</div>

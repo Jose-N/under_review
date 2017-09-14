@@ -1,57 +1,64 @@
 <h1>New Review Submission</h1>
 
-<%= form_for @submission do |f| %>
-  <% if @submission.errors.any? %>
-    <div id="error_explanation">
+<div class="form-box">
+  <fieldset><legend>New Jawn</legend>
+  <%= form_for @submission do |f| %>
+    <% if @submission.errors.any? %>
+      <div id="error_explanation">
 
-      <ul>
-      <% @submission.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @submission.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
     </div>
+
+
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+    <br>
+
+    <label class="fileContainer">
+      Upload your jawn!
+      <div class="field">
+        <%= f.file_field :screenshot, disabled: false %>
+      </div>
+    </label>
+
+    <div class="field">
+      <%= f.label :troll %>
+      <%= f.number_field :troll, in: 1...6 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :funny %>
+      <%= f.number_field :funny, in: 1...6 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :story %>
+      <%= f.number_field :story, in: 1...6 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :helpful %>
+      <%= f.number_field :helpful, in: 1...6 %>
+    </div>
+
+    <%= f.submit "Rate This Jawn" %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :screenshot %>
-    <%= f.file_field :screenshot, disabled: false %>
-  </div>
-
-  <div class="field">
-    <%= f.label :troll %>
-    <%= f.number_field :troll, in: 1...6 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :funny %>
-    <%= f.number_field :funny, in: 1...6 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :story %>
-    <%= f.number_field :story, in: 1...6 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :helpful %>
-    <%= f.number_field :helpful, in: 1...6 %>
-  </div>
-
-  <%= f.submit "Rate This Jawn" %>
-<% end %>
+</fieldset>
+</div>
