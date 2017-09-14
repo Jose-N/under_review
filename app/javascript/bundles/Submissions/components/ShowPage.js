@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
+import $ from 'jquery'
 
 class ShowPage extends Component {
 
   handleDelete(url, itemId) {
-
-  }
-
-  check_modified() {
-
   }
 
   render(){
@@ -17,13 +13,11 @@ class ShowPage extends Component {
       edits =
       <ul>
         <li><a href={`/submissions/${this.props.submission.id}/edit`}>Edit this Jawn</a></li>
-        <li onClick={this.handleDelete("submissions", this.props.submission.id)}>Delete this Jawn</li>
+        <a data-confirm="Are you sure?" data-method="delete" href={`/submissions/${this.props.submission.id}`} rel="nofollow">Delete this Jawn</a>
       </ul>
 
     }
   return (
-
-
     <div className="ShowPage">
       <h1>{this.props.submission.title}</h1>
       <ul>
