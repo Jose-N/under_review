@@ -1,87 +1,93 @@
-<h1><%= @submission.title %></h1>
-<ul>
-    <li>Overall Troll: <%= @troll %></li>
-    <li>Overall Funny: <%= @funny%></li>
-    <li>Overall Story: <%= @story%></li>
-    <li>Overall Helpful: <%= @helpful%></li>
-</ul>
+<div class="show-box">
+  <div class="ratings-box">
+    <h1><%= @submission.title %></h1>
+    <ul><h4 style="text-decoration:underline";>Overall Ratings:</h4>
+        <li>Troll: <%= @troll %></li>
+        <li>Funny: <%= @funny%></li>
+        <li>Story: <%= @story%></li>
+        <li>Helpful: <%= @helpful%></li>
+    </ul>
+  </div>
 
-<%= image_tag @submission.screenshot %>
-<%= link_to "Original Review", @submission.url %>
-<%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
+  <div class="submission-box">
+    <%= image_tag @submission.screenshot %>
+    <br>
+    <%= link_to "Original Review", @submission.url %>
+    <%= " posted @ #{@submission.created_at.strftime("%B %d %Y")} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
 
-<h4>Description</h4>
-<p><%= @submission.description %></p>
+    <h4>Description</h4>
+    <p><%= @submission.description %></p>
 
-<% if user_signed_in? %>
-  <% if current_user.admin || current_user.id == @submission.user_id %>
-    <%= link_to "Edit this Jawn", edit_submission_path(@submission) %>
-    <%= link_to "Delete this Jawn", submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
-<% end %>
+    <% if user_signed_in? %>
+      <% if current_user.admin || current_user.id == @submission.user_id %>
+        <%= link_to "Edit this Jawn", edit_submission_path(@submission) %>
+        <%= link_to "Delete this Jawn", submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
+    <% end %>
+  </div>
 
-<h4>Add a Comment </h4>
-  <%= form_for [@submission, @comment] do |f| %>
+  <h4>Add a Comment </h4>
+    <%= form_for [@submission, @comment] do |f| %>
 
-    <% if @comment.errors.any? %>
-      <div id="error_explanation">
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
 
-        <ul>
-        <% @comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+          <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :body, "Comment" %>
+        <%= f.text_field :body %>
       </div>
+
+      <div class="field">
+        <%= f.label :troll %>
+        <%= f.number_field :troll, in: 1...6 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :funny %>
+        <%= f.number_field :funny, in: 1...6 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :story %>
+        <%= f.number_field :story, in: 1...6 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :helpful %>
+        <%= f.number_field :helpful, in: 1...6 %>
+      </div>
+
+      <%= f.submit "Comment This Jawn" %>
     <% end %>
 
-    <div class="field">
-      <%= f.label :body, "Comment" %>
-      <%= f.text_field :body %>
-    </div>
+  <h4>Comments</h4>
+  <ul>
+    <% @submission.comments.each do |comment|%>
+      <% if comment && comment.body != "" %>
+          <%= " posted @ #{comment.created_at.strftime("%B %d %Y")} by" %> <strong> <%= "#{comment.user.username}" %> </strong>
+          <li><%= comment.body%></li>
+          <% if user_signed_in? && current_user.admin %>
+              <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+      <% else %>
+          <li>There was no comment for this rating</li>
+      <% end %>
 
-    <div class="field">
-      <%= f.label :troll %>
-      <%= f.number_field :troll, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :funny %>
-      <%= f.number_field :funny, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :story %>
-      <%= f.number_field :story, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :helpful %>
-      <%= f.number_field :helpful, in: 1...6 %>
-    </div>
-
-    <%= f.submit "Comment This Jawn" %>
-  <% end %>
-
-
-<h4>Comments</h4>
-<ul>
-  <% @submission.comments.each do |comment|%>
-    <% if comment && comment.body != "" %>
-        <%= " posted @ #{comment.created_at} by" %> <strong> <%= "#{comment.user.username}" %> </strong>
-        <li><%= comment.body%></li>
-        <% if user_signed_in? && current_user.admin %>
-            <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
-    <% else %>
-        <li>There was no comment for this rating</li>
+      <ul>
+        <li>Troll <%= comment.troll %></li>
+        <li>Funny <%= comment.funny %></li>
+        <li>Story <%= comment.story %></li>
+        <li>Helpful <%= comment.helpful %></li>
+    </ul>
+    </br>
     <% end %>
-
-    <ul>
-      <li> Troll Rating <%= comment.troll %></li>
-      <li> Funny Rating <%= comment.funny %></li>
-      <li>Story Rating <%= comment.story %></li>
-      <li>Helpful Rating <%= comment.helpful %></li>
   </ul>
-  </br>
-  <% end %>
-</ul>
+</div>

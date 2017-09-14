@@ -4,27 +4,20 @@
     <title>UnderReview</title>
     <%= csrf_meta_tags %>
 
+
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Arvo', media: 'all' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <nav>
-      <% if user_signed_in? %>
-      <div><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
-      <% else %>
-      <div><%= link_to 'Sign Up', new_user_registration_path %> </div>
-      <div><%= link_to 'Sign In', new_user_session_path %> </div>
-      <% end %>
-    </nav>
-    <div id="wrapper">
+      <div id="wrapper">
       <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
       <div class="menu">
         <label class="menu-toggle" for="menu"><span>Toggle</span></label>
         <ul>
-          <li>
-            <a href="#">Menu-1</a>
-          </li>
+          <li><%= link_to "Jawns", root_path %></li>
           <li>
             <a href="#">Menu-2</a>
           </li>
@@ -107,23 +100,17 @@
             </div>
           </li>
           <li>
-            <label for="menu-5">Menu-5</label>
+            <label for="menu-5">User</label>
             <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
-            <div class="menu">
+            <div class="menu two">
               <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
               <ul>
-                <li>
-                  <a href="#">Menu-5-1</a>
-                </li>
-                <li>
-                  <a href="#">Menu-5-2</a>
-                </li>
-                <li>
-                  <a href="#">Menu-5-3</a>
-                </li>
-                <li>
-                  <a href="#">Menu-5-4</a>
-                </li>
+                <% if user_signed_in? %>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                  <li><%= link_to "Sign In", new_user_session_path %></li>
+                <% end %>
               </ul>
             </div>
           </li>
@@ -132,17 +119,19 @@
           </li>
         </ul>
       </div>
+    </div>
+    </nav>
+    <div class="container">
       <% if flash.any? %>
-        <div class="flash">
-          <div class="container">
-            <% flash.each do |name, msg| %>
-              <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-            <% end %>
-          </div>
+      <div class="flash">
+        <div class="container">
+          <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+          <% end %>
         </div>
+      </div>
       <% end %>
-        <%= current_user.avatar %>
-      <%= yield %>
+    <%= yield %>
     </div>
   </body>
 </html>

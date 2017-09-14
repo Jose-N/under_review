@@ -1,6 +1,5 @@
-<%= link_to "Add a new submission", new_submission_path %>
-<ul>
-  <% @submissions.each do |submission| %>
-    <li><%= link_to submission.screenshot, submission %></li>
-  <% end %>
-</ul>
+<div class="tile-box">
+    <% @submissions.each do |submission| %>
+        <%= link_to image_tag(submission.screenshot, class: "submission-tile"), submission %>
+    <% end %>
+</div>
