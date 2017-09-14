@@ -1,8 +1,7 @@
 {
   "name": "under_review",
   "engines": {
-    "node": ">=4.0.0",
-    "yarn" : ">=0.25.0"
+    "node": ">=4.0.0"
   },
   "private": true,
   "version": "1.0.0",

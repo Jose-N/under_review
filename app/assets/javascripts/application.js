@@ -10,8 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require vendor-bundle
-//= require app-bundle
 //= require jquery
 //= require jquery_ujs
 //= require rails-ujs
