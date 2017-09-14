@@ -8,7 +8,6 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "heroku-prebuild": "npm install",
     "test": "node_modules/.bin/karma start karma.conf.js",
     "webpack": "node_modules/.bin/webpack --config ./react/webpack.config.js"
   },
