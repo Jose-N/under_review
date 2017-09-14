@@ -9,7 +9,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "node_modules/.bin/karma start karma.conf.js",
-    "start": "./bin/webpack-dev-server",
+    "start": "foreman start -f Procfile.dev",
     "webpack": "node_modules/.bin/webpack --config ./react/webpack.config.js"
   },
   "author": "",
