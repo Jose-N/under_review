@@ -8,9 +8,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "heroku-postbuild" : "bundle install",
     "test": "node_modules/.bin/karma start karma.conf.js",
-    "start": "foreman start -f Procfile.dev",
+    "start": "./bin/webpack-dev-server",
     "webpack": "node_modules/.bin/webpack --config ./react/webpack.config.js"
   },
   "author": "",
