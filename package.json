@@ -1,5 +1,6 @@
 {
   "name": "under_review",
+  "engines" : { "node" : ">=4.0.0"},
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -51,5 +52,5 @@
     "react-router": "^4.2.0",
     "react_ujs": "^2.2.1",
     "webpack": "^3.4.1"
-  }
+  },{  }
 }
