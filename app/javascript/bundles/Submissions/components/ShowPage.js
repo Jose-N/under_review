@@ -28,6 +28,7 @@ class ShowPage extends Component {
 
       <img src={`${this.props.submission.screenshot.url}`} />
       <p>posted @ {this.props.submission.created_at} by {this.props.submission_creator}</p>
+      <a href={`${this.props.submission.url}`}>Original Review</a>
 
       <h4>Description</h4>
       <p>{this.props.submission.description}</p>

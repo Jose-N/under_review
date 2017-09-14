@@ -1,4 +1,4 @@
-<%= react_component("ShowPage", props: { allowed: user_signed_in? && current_user.admin || current_user.id == @submission.user_id, submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}}, prerender: true) %>
+<%= react_component("ShowPage", props: { allowed: user_signed_in? && (current_user.admin || current_user.id == @submission.user_id), submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}}, prerender: true) %>
 
 <h4>Add a Comment </h4>
   <%= form_for [@submission, @comment] do |f| %>
