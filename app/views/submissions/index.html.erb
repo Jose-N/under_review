@@ -1,6 +1,6 @@
 <%= link_to "Add a new submission", new_submission_path %>
 <ul>
   <% @submissions.each do |submission| %>
-    <li><%= link_to submission.title, submission %></li>
+    <li><%= link_to submission.screenshot, submission %></li>
   <% end %>
 </ul>

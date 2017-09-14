@@ -11,6 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'listen', '~> 3.0.5'

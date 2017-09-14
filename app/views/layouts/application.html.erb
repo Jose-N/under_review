@@ -9,15 +9,15 @@
   </head>
 
   <body>
+    <nav>
+      <% if user_signed_in? %>
+      <div><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
+      <% else %>
+      <div><%= link_to 'Sign Up', new_user_registration_path %> </div>
+      <div><%= link_to 'Sign In', new_user_session_path %> </div>
+      <% end %>
+    </nav>
     <div id="wrapper">
-      <nav>
-        <% if user_signed_in? %>
-          <div><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
-        <% else %>
-          <div><%= link_to 'Sign Up', new_user_registration_path %> </div>
-          <div><%= link_to 'Sign In', new_user_session_path %> </div>
-        <% end %>
-      </nav>
       <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
       <div class="menu">
         <label class="menu-toggle" for="menu"><span>Toggle</span></label>
@@ -141,7 +141,7 @@
           </div>
         </div>
       <% end %>
-
+        <%= current_user.avatar %>
       <%= yield %>
     </div>
   </body>

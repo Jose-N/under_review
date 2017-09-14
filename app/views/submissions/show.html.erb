@@ -6,7 +6,7 @@
     <li>Overall Helpful: <%= @helpful%></li>
 </ul>
 
-<img src="<%= @submission.screenshot %>" alt="">
+<%= image_tag @submission.screenshot %>
 <%= link_to "Original Review", @submission.url %>
 <%= " posted @ #{@submission.created_at} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
 
