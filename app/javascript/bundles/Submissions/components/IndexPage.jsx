@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router'
+import Masonry from 'react-masonry-component';
+
+let masonryOptions = {
+  transitionDuration: 0
+};
 
 class IndexPage extends Component {
   render() {
@@ -7,16 +12,15 @@ class IndexPage extends Component {
     let listOfSubmissions = this.props.submissions.map(submission => {
       return(
       <div className="tile">
-      <p className="symbol-bar">Symbol</p>
         <a href={`/submissions/${submission.id}`}><img src={`${submission.screenshot.url}`} className="submission-tile"/></a>
         <p className="tile-title">{submission.title}</p>
       </div>
       )
     })
   return (
-    <div className="IndexPage">
+    <Masonry className="IndexPage">
       {listOfSubmissions}
-    </div>
+    </Masonry>
   )
   }
 }

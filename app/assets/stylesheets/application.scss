@@ -39,7 +39,9 @@ $mroon: #7b3049;
   pointer-events: none;
   z-index: 300;
 }
-
+li {
+  list-style: none;
+}
 label {
   cursor: pointer;
 }
@@ -162,6 +164,7 @@ body {
   font-size: 26px;
 }
 .container {
+  padding-top: 20px;
   width: 100%;
   position: relative;
   text-align: center;
@@ -207,6 +210,14 @@ body {
   opacity: 0.8;
   text-align: left;
   border-radius: 15px 15px 0px 0px;
+  opacity: 0;
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  -o-transition: opacity 500ms;
+  transition: opacity 500ms;
+}
+.tile:hover .symbol-bar {
+  opacity: 0.85;
 }
 .submission-box {
   padding-top: 20px;
@@ -228,6 +239,9 @@ body {
   cursor: pointer;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
+}
+.screenshot {
+  border-radius: 25px;
 }
 input[type=submit]:hover {
   background-color: $mroon;
@@ -262,11 +276,17 @@ input[type=submit]:hover {
   transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
   cursor: pointer;
 }
-
+.show-page-box {
+  max-width: 500px;
+  margin: auto;
+}
+.ratings-box {
+  position: relative;
+  text-align: left;
+}
 .sherlock:focus:hover{
   border-bottom: 1px solid #BBB;
 }
-
 .sherlock:focus {
   width: 700px;
   z-index: 1;
