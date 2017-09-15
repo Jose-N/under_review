@@ -27,7 +27,7 @@ Run 'rake' command or 'rspec' to run all tests for this app.  Tests are written 
 
 Deployment
 
-This app is build on a Ruby-On-Rails framework, use the command 'rails s' to launch the app from your terminal onto your local server.
+This app is build on a Ruby-On-Rails framework, with a React heavy front end.  To run these concurrently, use the command 'foreman start -f Procfile.dev' to launch the app from your terminal onto your local server.
 
 Built With
 

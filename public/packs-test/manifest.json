@@ -1,3 +1,5 @@
 {
-  "react-application.js": "/packs-test/react-application-96d9d0284b0543a9b359.js"
+  "application.js": "/packs-test/application-36bc97591ed8fc11070f.js",
+  "hello_react.js": "/packs-test/hello_react-cd3b4b9759d9a49e40e4.js",
+  "react-application.js": "/packs-test/react-application-c430b19579832a0c5355.js"
 }
