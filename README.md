@@ -31,9 +31,9 @@ This app is build on a Ruby-On-Rails framework, with a React heavy front end.  T
 
 Built With
 
-ruby (2.3.3)
-rails (~> 5.1.2)
-react
+ruby (2.3.3),
+rails (~> 5.1.2),
+react, & 
 postgresQL
 
 
@@ -43,18 +43,18 @@ Please read Contributing.md for details on our code of conduct, and the process 
 
 Authors
 
-Jose Naylor
-Ashlei Perry
-Kristen Jordan
+Jose Naylor,
+Ashlei Perry,
+Kristen Jordan,
 Thomas Wilson
 
 Contributors who participated on this project:
 
-Kylee Acker
-David MacMurtie
-Sebastian Kopp
-Arielle Landau
-Lots of help from our fellow Launchers at the Philly 3 Launch Academy cohort
+Kylee Acker,
+David MacMurtie,
+Sebastian Kopp,
+Arielle Landau,
+& lots of help from our fellow Launchers at the Philly 3 Launch Academy cohort
 
 Acknowledgments
 
