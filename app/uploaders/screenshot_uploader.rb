@@ -1,5 +1,11 @@
-class ScreenshotUploader < CarrierWave::Uploader::Base
+require 'carrierwave/processing/mini_magick'
 
+class ScreenshotUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+
+  version :thumb do
+    process resize_to_fit: [300, 600]
+  end 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

@@ -1,45 +1,47 @@
 <%= react_component("ShowPage", props: { allowed: user_signed_in? && (current_user.admin || current_user.id == @submission.user_id), submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}}, prerender: true) %>
+    <br>
+    <%= form_for [@submission, @comment] do |f| %>
 
-<h4>Add a Comment </h4>
-  <%= form_for [@submission, @comment] do |f| %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
 
-    <% if @comment.errors.any? %>
-      <div id="error_explanation">
+          <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-box">
+        <fieldset><legend>Add a Comment</legend>
+          <div class="field">
+            <%= f.label :body, "Comment" %>
+            <%= f.text_field :body %>
+          </div>
 
-        <ul>
-        <% @comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+          <div class="field">
+            <%= f.label :troll %>
+            <%= f.number_field :troll, in: 1...6 %>
+          </div>
+
+          <div class="field">
+            <%= f.label :funny %>
+            <%= f.number_field :funny, in: 1...6 %>
+          </div>
+
+          <div class="field">
+            <%= f.label :story %>
+            <%= f.number_field :story, in: 1...6 %>
+          </div>
+
+          <div class="field">
+            <%= f.label :helpful %>
+            <%= f.number_field :helpful, in: 1...6 %>
+          </div>
+
+          <%= f.submit "Comment This Jawn" %>
+        </fieldset>
       </div>
     <% end %>
-
-    <div class="field">
-      <%= f.label :body, "Comment" %>
-      <%= f.text_field :body %>
-    </div>
-
-    <div class="field">
-      <%= f.label :troll %>
-      <%= f.number_field :troll, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :funny %>
-      <%= f.number_field :funny, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :story %>
-      <%= f.number_field :story, in: 1...6 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :helpful %>
-      <%= f.number_field :helpful, in: 1...6 %>
-    </div>
-
-    <%= f.submit "Comment This Jawn" %>
-  <% end %>
 
 <%= react_component("SubmissionComments", props: @comments, prerender: true) %>

@@ -1,5 +1,9 @@
-class AvatarUploader < CarrierWave::Uploader::Base
+require 'carrierwave/processing/mini_magick'
 
+class AvatarUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+
+  process resize_to_fit: [80, 80]
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

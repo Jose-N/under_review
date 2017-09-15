@@ -18,22 +18,26 @@ class ShowPage extends Component {
     }
   return (
     <div className="ShowPage">
-      <h1>{this.props.submission.title}</h1>
-      <ul>
-        <li>Overall Troll: {this.props.submission_rating.troll}</li>
-        <li>Overall Funny: {this.props.submission_rating.funny}</li>
-        <li>Overall Story: {this.props.submission_rating.story}</li>
-        <li>Overall Helpful: {this.props.submission_rating.helpful}</li>
-      </ul>
+      <div className="ratings-box">
+        <h1>{this.props.submission.title}</h1>
+        <ul><h4>Overall Ratings:</h4>
+          <li>Troll: {this.props.submission_rating.troll}</li>
+          <li>Funny: {this.props.submission_rating.funny}</li>
+          <li>Story: {this.props.submission_rating.story}</li>
+          <li>Helpful: {this.props.submission_rating.helpful}</li>
+        </ul>
+      </div>
 
-      <img src={`${this.props.submission.screenshot.url}`} />
-      <p>posted @ {this.props.submission.created_at} by {this.props.submission_creator}</p>
-      <a href={`${this.props.submission.url}`}>Original Review</a>
+      <div className="submission-box">
+        <img src={`${this.props.submission.screenshot.url}`} />
+        <p>posted @ {this.props.submission.created_at} by {this.props.submission_creator}</p>
+        <a href={`${this.props.submission.url}`}>Original Review</a>
 
-      <h4>Description</h4>
-      <p>{this.props.submission.description}</p>
+        <h4>Description</h4>
+        <p>{this.props.submission.description}</p>
 
-      {edits}
+        {edits}
+      </div>
     </div>
   )
   }

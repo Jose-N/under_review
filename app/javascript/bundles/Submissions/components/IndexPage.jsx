@@ -6,7 +6,11 @@ class IndexPage extends Component {
 
     let listOfSubmissions = this.props.submissions.map(submission => {
       return(
-        <a href={`/submissions/${submission.id}`}><li>{submission.title}</li></a>
+      <div className="tile">
+      <p className="symbol-bar">Symbol</p>
+        <a href={`/submissions/${submission.id}`}><img src={`${submission.screenshot.url}`} className="submission-tile"/></a>
+        <p className="tile-title">{submission.title}</p>
+      </div>
       )
     })
   return (

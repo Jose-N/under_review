@@ -4,6 +4,8 @@
     <title>UnderReview</title>
     <%= csrf_meta_tags %>
 
+
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Arvo', media: 'all' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
@@ -12,26 +14,122 @@
 
   <body>
     <nav>
-      <% if user_signed_in? %>
-        <div><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
-      <% else %>
-        <div><%= link_to 'Sign Up', new_user_registration_path %> </div>
-        <div><%= link_to 'Sign In', new_user_session_path %> </div>
-      <% end %>
-      <div><%= link_to 'Home', submissions_path %> </div>
-      <div><%= link_to "Add a new submission", new_submission_path %></div>
-      <div><%= link_to 'Search', searches_path %> </div>
+      <div id="wrapper">
+      <input type="checkbox" id="menu" name="menu" class="menu-checkbox">
+      <div class="menu">
+        <label class="menu-toggle" for="menu"><span>Toggle</span></label>
+        <ul>
+          <li><%= link_to "Jawns", root_path %></li>
+          <li><%= link_to "New Jawn", new_submission_path %></li>
+          <li>
+            <label for="menu-3">Menu-3</label>
+            <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
+            <div class="menu two">
+              <label class="menu-toggle" for="menu-3"><span>Toggle</span></label>
+              <ul>
+                <li>
+                  <a href="#">Menu-3-1</a>
+                </li>
+                <li>
+                  <label for="menu-3-2">Menu-3-2</label>
+                  <input type="checkbox" id="menu-3-2" name="menu-3-2" class="menu-checkbox">
+                  <div class="menu three">
+                    <label class="menu-toggle" for="menu-3-2"><span>Toggle</span></label>
+                    <ul>
+                      <li>
+                        <a href="#">Menu-3-2-1</a>
+                      </li>
+                      <li>
+                        <a href="#">Menu-3-2-2</a>
+                      </li>
+                      <li>
+                        <label for="menu-3-2-3">Menu-3-2-3</label>
+                        <input type="checkbox" id="menu-3-2-3" name="menu-3-2-3" class="menu-checkbox">
+                        <div class="menu four">
+                          <label class="menu-toggle" for="menu-3-2-3"><span>Toggle</span></label>
+                          <ul>
+                            <li>
+                              <a href="#">Menu-3-2-3-1</a>
+                            </li>
+                            <li>
+                              <a href="#">Menu-3-2-3-2</a>
+                            </li>
+                            <li>
+                              <a href="#">Menu-3-2-3-3</a>
+                            </li>
+                            <li>
+                              <a href="#">Menu-3-2-3-4</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <a href="#">Menu-3-2-4</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="#">Menu-3-3</a>
+                </li>
+                <li>
+                  <a href="#">Menu-3-4</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <label for="menu-4">Categories</label>
+            <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
+            <div class="menu two">
+              <label class="menu-toggle" for="menu-4"><span>Toggle</span></label>
+              <ul>
+                <li>
+                  <a href="#">Helpful</a>
+                </li>
+                <li>
+                  <a href="#">Funny</a>
+                </li>
+                <li>
+                  <a href="#">Story</a>
+                </li>
+                <li>
+                  <a href="#">Troll</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <label for="menu-5">User</label>
+            <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
+            <div class="menu two">
+              <label class="menu-toggle" for="menu-5"><span>Toggle</span></label>
+              <ul>
+                <% if user_signed_in? %>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                  <li><%= link_to "Sign In", new_user_session_path %></li>
+                <% end %>
+              </ul>
+            </div>
+          </li>
+          <li><%= link_to "Search", searches_path %></li>
+        </ul>
+      </div>
+    </div>
     </nav>
-    <% if flash.any? %>
+    <div class="container">
+      <% if flash.any? %>
       <div class="flash">
         <div class="container">
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
           <% end %>
         </div>
       </div>
-    <% end %>
-
+      <% end %>
     <%= yield %>
+    </div>
   </body>
 </html>
