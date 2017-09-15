@@ -20,7 +20,7 @@ class ShowPage extends Component {
     <div className="ShowPage">
       <div className="ratings-box">
         <h1>{this.props.submission.title}</h1>
-        <ul><h4 style="text-decoration:underline";>Overall Ratings:</h4>
+        <ul><h4>Overall Ratings:</h4>
           <li>Troll: {this.props.submission_rating.troll}</li>
           <li>Funny: {this.props.submission_rating.funny}</li>
           <li>Story: {this.props.submission_rating.story}</li>
@@ -30,7 +30,7 @@ class ShowPage extends Component {
 
       <div className="submission-box">
         <img src={`${this.props.submission.screenshot.url}`} />
-        <p>posted @ {this.props.submission.created_at.strftime("%B %d %Y")} by {this.props.submission_creator}</p>
+        <p>posted @ {this.props.submission.created_at} by {this.props.submission_creator}</p>
         <a href={`${this.props.submission.url}`}>Original Review</a>
 
         <h4>Description</h4>

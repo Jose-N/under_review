@@ -8,8 +8,8 @@ class IndexPage extends Component {
       return(
       <div className="tile">
       <p className="symbol-bar">Symbol</p>
-        <a href={`/submissions/${submission.id}`}><img {submission.title} className="submission-title"/></a>
-        <p className="tile-title">{`submission.title'}'</p>
+        <a href={`/submissions/${submission.id}`}><img src={`${submission.screenshot.url}`} className="submission-tile"/></a>
+        <p className="tile-title">{submission.title}</p>
       </div>
       )
     })

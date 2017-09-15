@@ -22,7 +22,7 @@ class SubmissionComments extends Component {
       }
       return(
         <div className='comment'>
-          <p>posted @ {full_comment.comment.created_at.strftime("%B %d %Y")} by {full_comment.user.username}</p>
+          <p>posted @ {full_comment.comment.created_at} by {full_comment.user.username}</p>
           <ul>
               {body}
               <ul>

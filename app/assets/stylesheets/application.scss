@@ -208,7 +208,9 @@ body {
   text-align: left;
   border-radius: 15px 15px 0px 0px;
 }
-.submission-box { padding-top: 20px; }
+.submission-box {
+  padding-top: 20px;
+}
   a { color: white; }
   a:visited { color: $mroon; }
   input[type=submit] {
@@ -402,4 +404,7 @@ input[type=submit]:hover {
 .required{
     color:red;
     font-weight:normal;
+}
+abbr[title="required"] {
+  display: none;
 }
