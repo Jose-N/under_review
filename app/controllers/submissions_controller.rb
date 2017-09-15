@@ -10,6 +10,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @comment = Comment.new
+    create_comments_prop_hash
   end
 
   def new
@@ -81,6 +82,15 @@ class SubmissionsController < ApplicationController
         @funny = @funny / (@submission.comments.count + 1)
         @story = @story / (@submission.comments.count + 1)
         @helpful = @helpful / (@submission.comments.count + 1)
+      end
+    end
+
+    def create_comments_prop_hash
+      insert = []
+      @comments = {allowed: user_signed_in? && current_user.admin, comments: insert }
+      Submission.find(params[:id]).comments.map do |comment|
+        prop_hash = {comment: comment, user: comment.user}
+        insert << prop_hash
       end
     end
 end

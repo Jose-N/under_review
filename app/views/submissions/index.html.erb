@@ -1,9 +1,1 @@
-<div class="tile-box">
-    <% @submissions.each do |submission| %>
-      <div class="tile">
-        <p class="symbol-bar">Symbol</p>
-        <%= link_to image_tag(submission.screenshot, class: "submission-tile"), submission %>
-        <p class="tile-title"><%= submission.title %></p>
-      </div>
-    <% end %>
-</div>
+<%= react_component("IndexPage", props: { submissions: @submissions}, prerender: true) %>

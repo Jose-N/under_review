@@ -12,6 +12,10 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'react_on_rails', '~> 9.0.1'
+gem "webpacker", "~> 3.0"
+gem "foreman"
+
 
 group :development do
   gem 'listen', '~> 3.0.5'
@@ -30,6 +34,12 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'coveralls'
   gem 'simplecov'
+  gem 'phantomjs'
+  gem 'poltergeist'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :production do
@@ -37,3 +47,5 @@ group :production do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby

@@ -1,30 +1,4 @@
-<div class="show-box">
-  <div class="ratings-box">
-    <h1><%= @submission.title %></h1>
-    <ul><h4 style="text-decoration:underline";>Overall Ratings:</h4>
-        <li>Troll: <%= @troll %></li>
-        <li>Funny: <%= @funny%></li>
-        <li>Story: <%= @story%></li>
-        <li>Helpful: <%= @helpful%></li>
-    </ul>
-  </div>
-
-  <div class="submission-box">
-    <%= image_tag @submission.screenshot %>
-    <br>
-    <%= link_to "Original Review", @submission.url %>
-    <%= " posted @ #{@submission.created_at.strftime("%B %d %Y")} by" %> <strong> <%= "#{@submission.user.username}" %> </strong>
-
-    <h4>Description</h4>
-    <p><%= @submission.description %></p>
-
-    <% if user_signed_in? %>
-      <% if current_user.admin || current_user.id == @submission.user_id %>
-        <%= link_to "Edit this Jawn", edit_submission_path(@submission) %>
-        <%= link_to "Delete this Jawn", submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" } %>
-      <% end %>
-    <% end %>
-  </div>
+<%= react_component("ShowPage", props: { allowed: user_signed_in? && (current_user.admin || current_user.id == @submission.user_id), submission: @submission, submission_creator: @submission.user.username, submission_rating: {troll: @troll, funny: @funny, story: @story, helpful: @helpful}}, prerender: true) %>
 
   <h4>Add a Comment </h4>
     <%= form_for [@submission, @comment] do |f| %>
@@ -68,26 +42,4 @@
       <%= f.submit "Comment This Jawn" %>
     <% end %>
 
-  <h4>Comments</h4>
-  <ul>
-    <% @submission.comments.each do |comment|%>
-      <% if comment && comment.body != "" %>
-          <%= " posted @ #{comment.created_at.strftime("%B %d %Y")} by" %> <strong> <%= "#{comment.user.username}" %> </strong>
-          <li><%= comment.body%></li>
-          <% if user_signed_in? && current_user.admin %>
-              <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-      <% else %>
-          <li>There was no comment for this rating</li>
-      <% end %>
-
-      <ul>
-        <li>Troll <%= comment.troll %></li>
-        <li>Funny <%= comment.funny %></li>
-        <li>Story <%= comment.story %></li>
-        <li>Helpful <%= comment.helpful %></li>
-    </ul>
-    </br>
-    <% end %>
-  </ul>
-</div>
+<%= react_component("SubmissionComments", props: @comments, prerender: true) %>
