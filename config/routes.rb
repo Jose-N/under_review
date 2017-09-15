@@ -16,6 +16,14 @@ Rails.application.routes.draw do
   resources :comments, only: [:edit, :update, :destroy, :show]
 
   resources :searches, only: [:index]
-
   get '/searches/results', to:'searches#result'
+  get '/keywords/troll', to:'keywords#troll'
+  get '/keywords/funny', to:'keywords#funny'
+  get '/keywords/helpful', to:'keywords#helpful'
+  get '/keywords/story', to:'keywords#story'
+
+
+
+
+
 end
