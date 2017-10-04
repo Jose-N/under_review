@@ -12,7 +12,6 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'mini_magick'
-gem "fog", "1.25"
 gem 'react_on_rails', '~> 9.0.1'
 gem "webpacker", "~> 3.0"
 gem "foreman"
