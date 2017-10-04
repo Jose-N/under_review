@@ -14,7 +14,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'react_on_rails', '~> 9.0.1'
 gem "webpacker", "~> 3.0"
-gem "foreman"
+
 
 
 group :development do
