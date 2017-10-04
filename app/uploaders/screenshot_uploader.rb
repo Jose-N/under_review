@@ -5,17 +5,13 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
 
   version :thumb do
     process resize_to_fit: [300, 600]
-  end
+  end 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.test?
-    storage :file
-  else
-    storage :fog
-  end
+  storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
