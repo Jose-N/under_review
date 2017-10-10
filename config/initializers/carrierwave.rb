@@ -1,22 +1,23 @@
 require 'carrierwave/orm/activerecord'
 
-if !Rails.env.test?
+if Rails.env.test?
   CarrierWave.configure do |config|
-    config.storage = :fog
-    config.fog_credentials = {
-      :provider               => 'AWS',                            # required
-      :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],         # required
-      :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],     # required
-    }
-    config.fog_directory  = ENV['AWS_BUCKET_NAME']                 # required
-    config.fog_public     = true                                   # optional, defaults to true
-    config.root = Rails.root.join('tmp')
-    config.cache_dir = 'files'
-    config.permissions = 0777
-    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
+    config.storage :file
   end
 else
   CarrierWave.configure do |config|
-    config.storage :file
+
+    config.storage = :aws
+    config.aws_bucket = ENV.fetch('AWS_BUCKET')
+    config.aws_acl    = 'public-read'
+
+    config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
+
+    config.aws_credentials = {
+      access_key_id:     ENV.fetch('AWS_ID'),
+      secret_access_key: ENV.fetch('AWS_KEY'),
+      region:            ENV.fetch('AWS_REGION') # Required
+    }
+
   end
 end
